@@ -287,7 +287,9 @@ export default function Home() {
         <div className="max-w-4xl mb-16">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">How we work</span>
+            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted">
+              <InlineEditable contentPath="process.label" value={content.process.label} multiline={false} />
+            </span>
           </div>
           <h2 className="font-heading text-5xl md:text-7xl leading-tight">
             <InlineEditable contentPath="process.title" value={content.process.title} />
@@ -323,7 +325,9 @@ export default function Home() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Questions</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted">
+                <InlineEditable contentPath="faq.label" value={content.faq.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-5xl md:text-6xl leading-tight">
               <InlineEditable contentPath="faq.title" value={content.faq.title} />

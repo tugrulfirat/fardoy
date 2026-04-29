@@ -54,6 +54,7 @@ export const siteContent = {
     expertise: "Specialists in Finance, SaaS, Global Talent Strategy, M&A, and Workforce Design."
   },
   process: {
+    label: "How we work",
     title: "Build the best strategy to grow.",
     steps: [
       { id: "01", title: "Diagnose", desc: "We identify constraints, risks, and what is actually slowing progress" },
@@ -62,6 +63,7 @@ export const siteContent = {
     ]
   },
   faq: {
+    label: "Questions",
     title: "Frequently Asked Questions",
     items: [
       { q: "What's the average cost of the project?", a: "The price of anything is the amount of life you exchange for it. You are surrounded by simple, obvious solutions that can dramatically increase your income, power, influence and success. The problem is, you just don't see them." },
