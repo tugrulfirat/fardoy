@@ -31,8 +31,9 @@ export async function POST(req: Request) {
     // Update KV
     const KV_KEY = 'fardoy_site_content'
     
-    if (!process.env.KV_REST_API_URL) {
-      console.error('❌ KV_REST_API_URL is not set in environment variables')
+    const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+    if (!kvUrl) {
+      console.error('❌ No database URL found (checked KV_REST_API_URL and UPSTASH_REDIS_REST_URL)')
       return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
     }
 

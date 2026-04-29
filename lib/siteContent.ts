@@ -38,8 +38,9 @@ function applyChanges(target: any, changes: Record<string, any>) {
 export async function getSiteContent() {
   let content = { ...staticContent }
 
-  // 1. Try KV in production
-  if (process.env.KV_REST_API_URL) {
+  // 1. Try KV/Upstash in production
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
+  if (kvUrl) {
     try {
       const kvContent = await kv.get(KV_KEY)
       if (kvContent && typeof kvContent === 'object') {
