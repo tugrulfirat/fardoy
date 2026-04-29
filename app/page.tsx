@@ -38,7 +38,7 @@ export default function Home() {
                   as="span"
                   multiline={false}
                 />
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </Link>
             </div>
           </div>
@@ -50,7 +50,7 @@ export default function Home() {
             <img src="/assets/office-minimal.png" alt="Office Interior" className="w-full aspect-[1/1.4] object-cover" />
           </div>
           <div className="md:col-span-8 relative order-1 md:order-2">
-            <img src="/assets/strategic-architecture.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
+            <img src="/assets/architecture-strategic.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
           </div>
         </div>
       </section>
