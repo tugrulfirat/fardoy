@@ -61,6 +61,9 @@ export default function Home() {
                 <InlineEditable contentPath="hero.cta" value={content.hero.cta} multiline={false} />
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </Link>
+              <div className="hidden md:flex w-24 h-24 rounded-full bg-brand-ink text-brand-paper items-center justify-center text-[12px] uppercase tracking-[0.2em] font-bold text-center leading-tight cursor-pointer hover:scale-110 transition-transform animate-float">
+                SCROLL
+              </div>
             </div>
           </div>
         </div>
