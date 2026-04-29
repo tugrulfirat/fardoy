@@ -66,7 +66,10 @@ export function DraftProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ changes: pendingChanges }),
       })
       
-      if (!res.ok) throw new Error('Save failed')
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}))
+        throw new Error(errorData.message || 'Save failed')
+      }
       
       const data = await res.json()
       if (data.ok) {
@@ -77,8 +80,8 @@ export function DraftProvider({ children }: { children: React.ReactNode }) {
         return true
       }
       return false
-    } catch (err) {
-      alert('Failed to save changes. Please check your connection and password.')
+    } catch (err: any) {
+      alert(`Failed to save changes: ${err.message}`)
       return false
     } finally {
       setIsSaving(false)

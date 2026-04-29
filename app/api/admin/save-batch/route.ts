@@ -54,8 +54,12 @@ export async function POST(req: Request) {
     await kv.set(KV_KEY, newContent)
     
     return NextResponse.json({ ok: true })
-  } catch (err) {
+  } catch (err: any) {
     console.error('Save batch error:', err)
-    return NextResponse.json({ error: 'Internal error' }, { status: 500 })
+    return NextResponse.json({ 
+      error: 'Internal error', 
+      message: err.message,
+      stack: err.stack
+    }, { status: 500 })
   }
 }
