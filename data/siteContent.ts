@@ -1,0 +1,16 @@
+export const siteContent = {
+  hero: {
+    headline: "Make the right decisions before growth becomes expensive.",
+    subheadline: "Fardoy works with founders, SMEs, and scaling businesses to bring clarity, structure, and financial direction to critical stages of growth.",
+    cta: "Start the Conversation"
+  },
+  services: {
+    title: "Strategic Expertise.",
+    capabilities: [
+      { id: "startup", title: "Startup Foundations", desc: "We help early-stage businesses move from idea to a structured, investment-ready model." },
+      { id: "performance", title: "Performance & Profitability", desc: "We identify where value is being lost across cost, operations, and decision-making." },
+      { id: "growth", title: "Growth Strategy", desc: "We help businesses define where growth should come from and how to scale without chaos." },
+      { id: "systems", title: "Digital Systems", desc: "We turn workflows and routines into scalable systems aligned with the business model." }
+    ]
+  }
+}

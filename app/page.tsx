@@ -1,65 +1,63 @@
-import Image from "next/image";
+'use client'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { InlineEditable } from '@/components/InlineEditable'
+import { useSiteContent } from '@/components/SiteContentContext'
+import Link from 'next/link'
 
 export default function Home() {
+  const content = useSiteContent()
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-brand-paper">
+      <Header />
+      
+      {/* HERO SECTION */}
+      <section className="section-pad pt-20 md:pt-32 pb-24 md:pb-40 relative">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
+          <div className="lg:col-span-9">
+            <h1 className="font-heading text-[11vw] md:text-[7vw] lg:text-[6vw] leading-[0.95] tracking-tight max-w-5xl">
+              <InlineEditable 
+                contentPath="hero.headline" 
+                value={content.hero.headline} 
+                as="span"
+              />
+            </h1>
+            <p className="mt-8 font-body text-lg md:text-xl text-brand-muted max-w-2xl leading-relaxed">
+              <InlineEditable 
+                contentPath="hero.subheadline" 
+                value={content.hero.subheadline} 
+                as="span"
+              />
+            </p>
+            <div className="mt-12 flex flex-wrap items-center gap-8">
+              <Link href="/consultation" className="px-8 py-4 border border-brand-ink font-body text-xs uppercase tracking-widest font-bold flex items-center gap-4 hover:bg-brand-ink hover:text-brand-paper transition-all">
+                <InlineEditable 
+                  contentPath="hero.cta" 
+                  value={content.hero.cta} 
+                  as="span"
+                  multiline={false}
+                />
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Hero Images Grid */}
+        <div className="grid md:grid-cols-12 gap-6 mt-20 md:mt-32">
+          <div className="md:col-span-4 relative order-2 md:order-1">
+            <img src="/assets/office-minimal.png" alt="Office Interior" className="w-full aspect-[1/1.4] object-cover" />
+          </div>
+          <div className="md:col-span-8 relative order-1 md:order-2">
+            <img src="/assets/strategic-architecture.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
+          </div>
         </div>
-      </main>
-    </div>
-  );
+      </section>
+
+      {/* OTHER SECTIONS WOULD GO HERE */}
+      
+      <Footer />
+    </main>
+  )
 }

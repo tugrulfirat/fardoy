@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-red: #ef4d38;
+  --color-brand-cream: #f4f1de;
+  --color-brand-mint: #9cd5c0;
+  --color-brand-sage: #d7e8d4;
+  --color-brand-ink: #21312b;
+  --color-brand-muted: #59665a;
+  --color-brand-paper: #fbf8ea;
+
+  --font-heading: "Cormorant Garamond", serif;
+  --font-body: "Source Sans 3", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #fbf8ea;
+  --foreground: #21312b;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.section-pad {
+  padding-left: clamp(1.5rem, 6vw, 7rem);
+  padding-right: clamp(1.5rem, 6vw, 7rem);
+}
+
+.nav-link {
+  transition: color 0.5s;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }
