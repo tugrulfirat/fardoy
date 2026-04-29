@@ -68,9 +68,13 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-6 mt-20 md:mt-32">
-          <div className="md:col-span-4 relative order-2 md:order-1">
-            <img src="/assets/office-minimal.png" alt="Office Interior" className="w-full aspect-[1/1.4] object-cover" />
+        <div className="grid md:grid-cols-12 gap-6 mt-20 md:mt-32 items-stretch">
+          <div className="md:col-span-4 relative order-2 md:order-1 min-h-[300px]">
+            <img 
+              src="/assets/office-minimal.png" 
+              alt="Office Interior" 
+              className="w-full h-full md:absolute md:inset-0 object-cover" 
+            />
           </div>
           <div className="md:col-span-8 relative order-1 md:order-2">
             <img src="/assets/architecture-strategic.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
