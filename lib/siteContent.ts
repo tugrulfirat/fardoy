@@ -16,15 +16,16 @@ const KV_KEY = 'fardoy_site_content'
  * Handles both nested structures and flat keys (e.g. "a.b.c")
  */
 function applyChanges(target: any, changes: Record<string, any>) {
-  const result = JSON.parse(JSON.stringify(target))
-  
+  // Ensure target is a valid object, otherwise start with an empty one
+  const result = (target && typeof target === 'object') ? JSON.parse(JSON.stringify(target)) : {}
+
   for (const [path, value] of Object.entries(changes)) {
     const keys = path.split('.')
     let current = result
     
     for (let i = 0; i < keys.length - 1; i++) {
       const key = keys[i]
-      if (!(key in current)) {
+      if (!current[key] || typeof current[key] !== 'object') {
         current[key] = {}
       }
       current = current[key]
