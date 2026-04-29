@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useIsAdmin } from '@/hooks/useIsAdmin'
 import { useDraft } from './DraftContext'
 
 type Props = {
   contentPath: string
   value: string
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
   className?: string
   multiline?: boolean
 }
