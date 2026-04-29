@@ -88,7 +88,9 @@ export default function Home() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-10 h-[1px] bg-brand-ink"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-ink">Strategic Triggers</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-ink">
+                <InlineEditable contentPath="triggers.label" value={content.triggers.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-5xl md:text-7xl leading-tight text-brand-ink">
               <InlineEditable contentPath="triggers.title" value={content.triggers.title} />
@@ -120,7 +122,9 @@ export default function Home() {
           <div className="md:col-span-7 flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Who we are</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="whoWeAre.label" value={content.whoWeAre.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-5xl md:text-7xl leading-[0.95] mb-8">
               <InlineEditable contentPath="whoWeAre.headline" value={content.whoWeAre.headline} />
@@ -143,7 +147,9 @@ export default function Home() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Why Fardoy</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="whyFardoy.label" value={content.whyFardoy.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-5xl md:text-6xl leading-tight">
               <InlineEditable contentPath="whyFardoy.title" value={content.whyFardoy.title} />
@@ -176,7 +182,9 @@ export default function Home() {
       {/* PRINCIPLES */}
       <section className="py-24 md:py-32 bg-brand-ink text-brand-paper overflow-hidden">
         <div className="section-pad mb-14">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">PRINCIPLES</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">
+            <InlineEditable contentPath="principles.label" value={content.principles.label} multiline={false} />
+          </span>
           <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-3xl">
             <InlineEditable contentPath="principles.title" value={content.principles.title} />
           </h2>

@@ -6,13 +6,33 @@ export default function LoginPage() {
   const [password, setPassword] = useState('')
   const router = useRouter()
 
-  const handleLogin = (e: React.FormEvent) => {
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (password) {
-      localStorage.setItem('fardoy_pw', password)
-      router.push('/')
-      // Trigger storage event for same-tab updates
-      window.dispatchEvent(new Event('storage'))
+    setError('')
+    setLoading(true)
+
+    try {
+      const res = await fetch('/api/admin/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      })
+
+      if (res.ok) {
+        localStorage.setItem('fardoy_pw', password)
+        // Trigger storage event for same-tab updates
+        window.dispatchEvent(new Event('storage'))
+        router.push('/')
+      } else {
+        setError('Incorrect password. Please try again.')
+      }
+    } catch (err) {
+      setError('An error occurred. Please check your connection.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -32,13 +52,16 @@ export default function LoginPage() {
               className="w-full border-b border-brand-ink/20 py-3 font-heading text-2xl outline-none focus:border-brand-red transition-colors"
               placeholder="••••••••"
               required
+              disabled={loading}
             />
+            {error && <p className="mt-2 text-[10px] text-brand-red font-bold uppercase tracking-widest">{error}</p>}
           </div>
           <button 
             type="submit"
-            className="w-full bg-brand-ink text-brand-paper py-4 text-xs uppercase tracking-[0.2em] font-bold hover:bg-brand-red transition-all"
+            disabled={loading}
+            className={`w-full py-4 text-xs uppercase tracking-[0.2em] font-bold transition-all ${loading ? 'bg-brand-muted cursor-not-allowed' : 'bg-brand-ink text-brand-paper hover:bg-brand-red'}`}
           >
-            Unlock Site
+            {loading ? 'Verifying...' : 'Unlock Site'}
           </button>
         </form>
         <p className="mt-8 text-[10px] text-center text-brand-muted uppercase tracking-widest leading-relaxed">

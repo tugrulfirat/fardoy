@@ -6,6 +6,7 @@ export const siteContent = {
     cta: "Start the Conversation"
   },
   triggers: {
+    label: "Strategic Triggers",
     title: "When to work with Fardoy.",
     items: [
       "When growth slows despite continued effort",
@@ -15,11 +16,13 @@ export const siteContent = {
     ]
   },
   whoWeAre: {
+    label: "Who we are",
     headline: "Structure and clarity for the move ahead.",
     subheadline: "We help businesses move from uncertainty to structured growth.",
     desc: "Most growth problems are actually decision problems. We identify the constraints slowing you down and install the systems required to scale without chaos."
   },
   whyFardoy: {
+    label: "Why Fardoy",
     title: "Going beyond traditional consulting.",
     paragraphs: [
       "Fardoy is a strategic consultancy that combines financial leadership, talent strategy, and operational systems. We don't just provide advice; we work alongside founders to execute the decisions that control momentum.",
@@ -34,6 +37,7 @@ export const siteContent = {
     ]
   },
   principles: {
+    label: "Principles",
     title: "The challenger consultancy, without the theatre.",
     cards: [
       { id: "01", title: "Define the real constraint", desc: "We separate symptoms from the decision that actually controls momentum." },
@@ -130,11 +134,13 @@ export const siteContent = {
   // --- ABOUT PAGE ---
   aboutPage: {
     hero: {
+      label: "About",
       headline: "Clarity as a competitive edge.",
       subheadline: "We move businesses from discussion to decision. By turning complexity into practical structure, we ensure growth is supported by financial and operational clarity.",
       desc: "Our work combines financial leadership, talent strategy, and digital systems — shaped around the specific constraints of the business in front of us."
     },
     approach: {
+      label: "Approach",
       title: "How we work.",
       italic: "Every engagement is shaped around the decision in front of you.",
       paragraphs: [
@@ -144,6 +150,7 @@ export const siteContent = {
       ]
     },
     difference: {
+      label: "Our Difference",
       title: "Senior judgment, without unnecessary theatre.",
       headline: "Fardoy is intentionally lean and senior-led. We avoid the layers of a traditional consultancy to stay close to the real business problem.",
       desc: "Every engagement is founder-led and supported by a trusted network of specialists only when specific expertise improves the outcome.",
@@ -162,6 +169,7 @@ export const siteContent = {
       }
     ],
     principles: {
+      label: "Values",
       title: "The principles behind the work.",
       items: [
         { id: "01", title: "Define the real constraint", desc: "We look beyond symptoms to identify the decision, structure, or operational issue that is actually slowing progress." },
@@ -217,6 +225,7 @@ export const siteContent = {
   // --- CONTACT PAGE ---
   contactPage: {
     hero: {
+      label: "Contact Us",
       title: "Get in Touch."
     },
     enquiries: {

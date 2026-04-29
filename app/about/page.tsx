@@ -19,7 +19,9 @@ export default function About() {
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">About</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="aboutPage.hero.label" value={page.hero.label} multiline={false} />
+              </span>
             </div>
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight">
               <InlineEditable contentPath="aboutPage.hero.headline" value={page.hero.headline} />
@@ -44,7 +46,9 @@ export default function About() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Approach</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="aboutPage.approach.label" value={page.approach.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl leading-tight">
               <InlineEditable contentPath="aboutPage.approach.title" value={page.approach.title} />
@@ -69,7 +73,9 @@ export default function About() {
       <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
-            <span className="section-num mb-6 block uppercase tracking-widest text-[12px]">Our Difference</span>
+            <span className="section-num mb-6 block uppercase tracking-widest text-[12px]">
+              <InlineEditable contentPath="aboutPage.difference.label" value={page.difference.label} multiline={false} />
+            </span>
             <h2 className="font-heading text-4xl md:text-6xl leading-tight">
               <InlineEditable contentPath="aboutPage.difference.title" value={page.difference.title} />
             </h2>
@@ -128,7 +134,9 @@ export default function About() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-paper opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-mint uppercase">Values</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-mint uppercase">
+                <InlineEditable contentPath="aboutPage.principles.label" value={page.principles.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-4xl md:text-6xl leading-tight">
               <InlineEditable contentPath="aboutPage.principles.title" value={page.principles.title} />

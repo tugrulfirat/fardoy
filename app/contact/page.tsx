@@ -19,7 +19,9 @@ export default function Contact() {
           <div className="md:col-span-10">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Contact Us</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="contactPage.hero.label" value={page.hero.label} multiline={false} />
+              </span>
             </div>
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight mb-20">
               <InlineEditable contentPath="contactPage.hero.title" value={page.hero.title} />

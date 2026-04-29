@@ -7,32 +7,58 @@ const CONTENT_FILE = path.join(process.cwd(), 'data/siteContent.json')
 const KV_KEY = 'fardoy_site_content'
 
 /**
+ * Deep merges changes into a target object.
+ * Handles both nested structures and flat keys (e.g. "a.b.c")
+ */
+function applyChanges(target: any, changes: Record<string, any>) {
+  const result = JSON.parse(JSON.stringify(target))
+  
+  for (const [path, value] of Object.entries(changes)) {
+    const keys = path.split('.')
+    let current = result
+    
+    for (let i = 0; i < keys.length - 1; i++) {
+      const key = keys[i]
+      if (!(key in current)) {
+        current[key] = {}
+      }
+      current = current[key]
+    }
+    
+    current[keys[keys.length - 1]] = value
+  }
+  
+  return result
+}
+
+/**
  * Returns the site content.
  * In production (Vercel), it tries to fetch from KV first.
- * In development, it reads from the local JSON file.
  */
 export async function getSiteContent() {
+  let content = { ...staticContent }
+
   // 1. Try KV in production
   if (process.env.KV_REST_API_URL) {
     try {
       const kvContent = await kv.get(KV_KEY)
       if (kvContent && typeof kvContent === 'object') {
-        return { ...staticContent, ...kvContent } as any
+        content = applyChanges(content, kvContent as Record<string, any>)
       }
     } catch (err) {
       console.error('❌ KV Error in getSiteContent:', err)
     }
   }
 
-  // 2. Try local JSON if it exists
+  // 2. Try local JSON if it exists (for local persistence if KV is not used)
   try {
     if (fs.existsSync(CONTENT_FILE)) {
-      return JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf-8'))
+      const fileContent = JSON.parse(fs.readFileSync(CONTENT_FILE, 'utf-8'))
+      content = applyChanges(content, fileContent)
     }
   } catch (err) {
-    console.error('❌ File Error in getSiteContent:', err)
+    // Silently continue
   }
 
-  // 3. Fallback to hardcoded static content
-  return staticContent
+  return content
 }

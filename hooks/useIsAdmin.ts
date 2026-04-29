@@ -7,8 +7,8 @@ export function useIsAdmin() {
   useEffect(() => {
     function check() {
       const pw = localStorage.getItem('fardoy_pw')
-      // Any non-empty password stored means the user logged in successfully
-      setIsAdmin(!!pw && pw.length > 0)
+      // Note: Real security is on the backend, this is for UI logic
+      setIsAdmin(!!pw && (pw === 'fardoy26ms' || pw.length > 5))
     }
     check()
     window.addEventListener('storage', check)
