@@ -4,13 +4,72 @@ export const siteContent = {
     subheadline: "Fardoy works with founders, SMEs, and scaling businesses to bring clarity, structure, and financial direction to critical stages of growth.",
     cta: "Start the Conversation"
   },
-  services: {
-    title: "Strategic Expertise.",
-    capabilities: [
-      { id: "startup", title: "Startup Foundations", desc: "We help early-stage businesses move from idea to a structured, investment-ready model." },
-      { id: "performance", title: "Performance & Profitability", desc: "We identify where value is being lost across cost, operations, and decision-making." },
-      { id: "growth", title: "Growth Strategy", desc: "We help businesses define where growth should come from and how to scale without chaos." },
-      { id: "systems", title: "Digital Systems", desc: "We turn workflows and routines into scalable systems aligned with the business model." }
+  triggers: {
+    title: "When to work with Fardoy.",
+    items: [
+      "When growth slows despite continued effort",
+      "When strategy exists but execution breaks down",
+      "When scaling introduces more friction than progress",
+      "When decisions feel reactive instead of deliberate"
     ]
+  },
+  whoWeAre: {
+    headline: "Structure and clarity for the move ahead.",
+    subheadline: "We help businesses move from uncertainty to structured growth.",
+    desc: "Most growth problems are actually decision problems. We identify the constraints slowing you down and install the systems required to scale without chaos."
+  },
+  whyFardoy: {
+    title: "Going beyond traditional consulting.",
+    paragraphs: [
+      "Fardoy is a strategic consultancy that combines financial leadership, talent strategy, and operational systems. We don't just provide advice; we work alongside founders to execute the decisions that control momentum.",
+      "Our approach is lean and senior-led. We avoid the typical consultancy theatre in favour of direct thinking and practical routes to implementation.",
+      "Every engagement is shaped around the specific decision in front of you — whether that is preparing for investment, fixing operational drag, or structuring a scaling team."
+    ],
+    stats: [
+      { label: "Combined experience across strategy, finance & tech", value: "15+ Years" },
+      { label: "Across M&A, fundraising, and digital transformation", value: "Proven Delivery" },
+      { label: "Aligning strategy with execution, not just advice", value: "Hands-on Support" },
+      { label: "Building workforce strategy and tech infrastructure", value: "Robust Systems" }
+    ]
+  },
+  principles: {
+    title: "The challenger consultancy, without the theatre.",
+    cards: [
+      { id: "01", title: "Define the real constraint", desc: "We separate symptoms from the decision that actually controls momentum." },
+      { id: "02", title: "Choose what not to do", desc: "Growth improves when the business has fewer priorities with stronger ownership." },
+      { id: "03", title: "Install execution rhythm", desc: "We turn strategy into review cycles, SOPs, dashboards, and decision rights." },
+      { id: "04", title: "Make progress visible", desc: "The result is clearer accountability, better efficiency, and growth that can be managed." }
+    ]
+  },
+  leadership: {
+    title: "Senior operators combining financial, commercial, and talent judgment.",
+    desc1: "Engagements are founder-led, supported by specialist expertise only where it improves the outcome.",
+    desc2: "The goal is a tighter route from decision to implementation.",
+    founders: [
+      { name: "Shervin Fard", role: "Talent Strategy Partner" },
+      { name: "Marzieh Fard", role: "Strategic Growth Partner, FCCA" }
+    ],
+    expertise: "Specialists in Finance, SaaS, Global Talent Strategy, M&A, and Workforce Design."
+  },
+  process: {
+    title: "Build the best strategy to grow.",
+    steps: [
+      { id: "01", title: "Diagnose", desc: "We identify constraints, risks, and what is actually slowing progress" },
+      { id: "02", title: "Structure", desc: "We define a clear, practical path forward" },
+      { id: "03", title: "Execute", desc: "We support implementation with measurable outcomes" }
+    ]
+  },
+  faq: {
+    title: "Frequently Asked Questions",
+    items: [
+      { q: "What's the average cost of the project?", a: "The price of anything is the amount of life you exchange for it. You are surrounded by simple, obvious solutions that can dramatically increase your income, power, influence and success. The problem is, you just don't see them." },
+      { q: "How long will you take?", a: "Typically, engagements range from 3 to 6 months depending on the complexity of the transformation and the scale of the implementation required." },
+      { q: "What process I can expect?", a: "We follow a three-stage process: Diagnostic (clarifying constraints), Strategy (defining the move), and Execution (installing the systems to deliver)." },
+      { q: "What I can expect on our first call?", a: "A peer-level discussion about your business constraints. We don't do pitch decks; we do diagnostics. We'll explore if Fardoy is the right fit for your current stage." }
+    ]
+  },
+  cta: {
+    headline: "Have a decision to make?",
+    button: "Start the conversation"
   }
 }
