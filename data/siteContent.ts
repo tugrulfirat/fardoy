@@ -43,6 +43,7 @@ export const siteContent = {
     ]
   },
   leadership: {
+    label: "Leadership",
     title: "Senior operators combining financial, commercial, and talent judgment.",
     desc1: "Engagements are founder-led, supported by specialist expertise only where it improves the outcome.",
     desc2: "The goal is a tighter route from decision to implementation.",

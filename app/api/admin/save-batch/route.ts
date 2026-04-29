@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const password = req.headers.get('x-admin-password')
     
     // In a real app, this should be stored in Vercel KV or Env
-    const adminPassword = process.env.ADMIN_PASSWORD || 'fardoy123'
+    const adminPassword = process.env.ADMIN_PASSWORD || 'fardoy26ms'
     
     if (password !== adminPassword) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

@@ -230,7 +230,9 @@ export default function Home() {
       {/* LEADERSHIP */}
       <section className="bg-brand-paper">
         <div className="section-pad pt-24 md:pt-36 bg-brand-paper">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-red mb-8 block">LEADERSHIP</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-red mb-8 block">
+            <InlineEditable contentPath="leadership.label" value={content.leadership.label} multiline={false} />
+          </span>
           <div className="grid md:grid-cols-12 gap-10 md:gap-16">
             <div className="md:col-span-8">
               <h2 className="font-heading text-5xl md:text-7xl leading-[0.95]">
@@ -330,7 +332,11 @@ export default function Home() {
           <div className="md:col-span-7 mt-12 md:mt-0">
             <div className="border-t border-brand-ink border-opacity-10">
               {content.faq.items.map((item: any, i: number) => (
-                <FAQItem key={i} q={item.q} a={item.a} />
+                <FAQItem 
+                  key={i} 
+                  questionNode={<InlineEditable contentPath={`faq.items.${i}.q`} value={item.q} multiline={false} />}
+                  answerNode={<InlineEditable contentPath={`faq.items.${i}.a`} value={item.a} />}
+                />
               ))}
             </div>
           </div>
