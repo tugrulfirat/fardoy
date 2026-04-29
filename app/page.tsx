@@ -15,6 +15,39 @@ export default function Home() {
       
       {/* HERO SECTION */}
       <section className="section-pad pt-20 md:pt-32 pb-24 md:pb-40 relative">
+        {/* Abstract Animated Object */}
+        <div className="absolute top-0 right-0 w-full lg:w-[60%] h-[90%] overflow-hidden pointer-events-none z-0 mix-blend-multiply flex items-center justify-end">
+          <svg viewBox="0 0 1000 1000" className="w-[150%] md:w-[120%] h-auto opacity-70 translate-x-[10%] -translate-y-[5%]">
+            {/* Ink Layer */}
+            <g className="animate-abstract-1" stroke="#21312b" strokeWidth="1.5" fill="none" opacity="0.12">
+              <ellipse cx="600" cy="500" rx="400" ry="200" transform="rotate(-20 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="412" ry="205" transform="rotate(-18 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="424" ry="210" transform="rotate(-16 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="436" ry="215" transform="rotate(-14 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="448" ry="220" transform="rotate(-12 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="460" ry="225" transform="rotate(-10 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="472" ry="230" transform="rotate(-8 600 500)"></ellipse>
+              <ellipse cx="600" cy="500" rx="484" ry="235" transform="rotate(-6 600 500)"></ellipse>
+            </g>
+            {/* Muted Layer */}
+            <g className="animate-abstract-2" stroke="#59665a" strokeWidth="1.5" fill="none" opacity="0.1">
+              <ellipse cx="700" cy="400" rx="300" ry="250" transform="rotate(40 700 400)"></ellipse>
+              <ellipse cx="700" cy="400" rx="315" ry="255" transform="rotate(42 700 400)"></ellipse>
+              <ellipse cx="700" cy="400" rx="330" ry="260" transform="rotate(44 700 400)"></ellipse>
+              <ellipse cx="700" cy="400" rx="345" ry="265" transform="rotate(46 700 400)"></ellipse>
+              <ellipse cx="700" cy="400" rx="360" ry="270" transform="rotate(48 700 400)"></ellipse>
+              <ellipse cx="700" cy="400" rx="375" ry="275" transform="rotate(50 700 400)"></ellipse>
+            </g>
+            {/* Mint Layer */}
+            <g className="animate-abstract-1" stroke="#9cd5c0" strokeWidth="2" fill="none" opacity="0.15" style={{ animationDuration: '35s', animationDirection: 'reverse' }}>
+              <ellipse cx="550" cy="600" rx="500" ry="150" transform="rotate(10 550 600)"></ellipse>
+              <ellipse cx="550" cy="600" rx="510" ry="155" transform="rotate(12 550 600)"></ellipse>
+              <ellipse cx="550" cy="600" rx="520" ry="160" transform="rotate(14 550 600)"></ellipse>
+              <ellipse cx="550" cy="600" rx="530" ry="165" transform="rotate(16 550 600)"></ellipse>
+              <ellipse cx="550" cy="600" rx="540" ry="170" transform="rotate(18 550 600)"></ellipse>
+            </g>
+          </svg>
+        </div>
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
           <div className="lg:col-span-9">
             <h1 className="font-heading text-[11vw] md:text-[7vw] lg:text-[6vw] leading-[0.95] tracking-tight max-w-5xl">
