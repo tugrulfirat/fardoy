@@ -1,7 +1,12 @@
 import { siteContent as staticContent } from '@/data/siteContent'
-import { kv } from '@vercel/kv'
+import { createClient } from '@vercel/kv'
 import fs from 'fs'
 import path from 'path'
+
+const kv = createClient({
+  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '',
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '',
+})
 
 const CONTENT_FILE = path.join(process.cwd(), 'data/siteContent.json')
 const KV_KEY = 'fardoy_site_content'

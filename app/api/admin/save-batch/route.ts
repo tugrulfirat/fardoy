@@ -1,5 +1,10 @@
-import { kv } from '@vercel/kv'
+import { createClient } from '@vercel/kv'
 import { NextResponse } from 'next/server'
+
+const kv = createClient({
+  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || '',
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '',
+})
 
 function applyChanges(target: any, changes: Record<string, any>) {
   const result = JSON.parse(JSON.stringify(target))
