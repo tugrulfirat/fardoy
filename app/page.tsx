@@ -143,23 +143,46 @@ export default function Home() {
         </div>
         <div className="pl-6 md:pl-[clamp(4rem,6vw,7rem)] overflow-x-auto pb-4">
           <div className="flex gap-6 w-max pr-6 md:pr-20">
-            {content.principles.cards.map((card: any, i: number) => (
-              <article key={i} className="w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col justify-between min-h-[400px]">
-                <div className="flex gap-3 items-center text-brand-red">
-                  <span className="w-16 h-16 rounded-full border border-current"></span>
-                  <span className="w-16 h-16 bg-current"></span>
-                </div>
-                <div>
-                  <p className="text-xs opacity-50 mb-8">/ {card.id}</p>
-                  <h3 className="font-heading text-4xl mb-5">
-                    <InlineEditable contentPath={`principles.cards.${i}.title`} value={card.title} />
-                  </h3>
-                  <p className="text-sm text-brand-mint leading-relaxed">
-                    <InlineEditable contentPath={`principles.cards.${i}.desc`} value={card.desc} />
-                  </p>
-                </div>
-              </article>
-            ))}
+              {content.principles.cards.map((card: any, i: number) => (
+                <article key={card.id} className="principle-card w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col justify-between">
+                  <div className={`flex gap-3 text-brand-red ${i === 2 ? 'items-end' : 'items-center'}`}>
+                    {i === 0 && (
+                      <>
+                        <span className="w-16 h-16 rounded-full border border-current"></span>
+                        <span className="w-16 h-16 bg-current"></span>
+                      </>
+                    )}
+                    {i === 1 && (
+                      <>
+                        <span className="w-16 h-16 rounded-full bg-current"></span>
+                        <span className="w-28 h-16 rounded-full border border-current"></span>
+                      </>
+                    )}
+                    {i === 2 && (
+                      <>
+                        <span className="w-20 h-16 rounded-t-full border border-current"></span>
+                        <span className="w-16 h-16 rounded-full bg-current"></span>
+                        <span className="w-16 h-16 rounded-br-full border border-current"></span>
+                      </>
+                    )}
+                    {i === 3 && (
+                      <>
+                        <span className="w-24 h-16 rounded-l-full bg-current"></span>
+                        <span className="w-16 h-16 border border-current rotate-45"></span>
+                      </>
+                    )}
+                  </div>
+                  <div>
+                    <p className="text-xs opacity-50 mb-8">/ {card.id}</p>
+                    <h3 className="font-heading text-4xl mb-5">
+                      <InlineEditable contentPath={`principles.cards.${i}.title`} value={card.title} multiline={false} />
+                    </h3>
+                    <p className="text-sm text-brand-mint leading-relaxed">
+                      <InlineEditable contentPath={`principles.cards.${i}.desc`} value={card.desc} />
+                    </p>
+                  </div>
+                </article>
+              ))}
           </div>
         </div>
       </section>
