@@ -1,34 +1,7 @@
-import { createClient } from '@vercel/kv'
+import { applyChanges, getKvClient, getSiteContent, hasValidKvConfig, KV_KEY } from '@/lib/siteContent'
 import { NextResponse } from 'next/server'
 
-const getUrl = () => {
-  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env.REDIS_URL || ''
-  return url.startsWith('https://') ? url : 'https://dummy-url-to-prevent-build-crash.com'
-}
-
-const kv = createClient({
-  url: getUrl(),
-  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || 'dummy-token',
-})
-
-function applyChanges(target: any, changes: Record<string, any>) {
-  // Ensure target is a valid object, otherwise start with an empty one
-  const result = (target && typeof target === 'object') ? JSON.parse(JSON.stringify(target)) : {}
-  
-  for (const [path, value] of Object.entries(changes)) {
-    const keys = path.split('.')
-    let current = result
-    for (let i = 0; i < keys.length - 1; i++) {
-      const key = keys[i]
-      if (!current[key] || typeof current[key] !== 'object') {
-        current[key] = {}
-      }
-      current = current[key]
-    }
-    current[keys[keys.length - 1]] = value
-  }
-  return result
-}
+export const dynamic = 'force-dynamic'
 
 export async function POST(req: Request) {
   try {
@@ -42,29 +15,32 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Update KV
-    const KV_KEY = 'fardoy_site_content'
-    
-    const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-    if (!kvUrl || !kvUrl.startsWith('https://')) {
+    if (!hasValidKvConfig()) {
       console.error('❌ No valid HTTPS database URL found. Please check your KV_REST_API_URL or UPSTASH_REDIS_REST_URL.')
       return NextResponse.json({ error: 'Database not configured correctly' }, { status: 500 })
     }
 
-    const currentContent = (await kv.get(KV_KEY)) || {}
+    const kv = getKvClient()
+    if (!kv) {
+      return NextResponse.json({ error: 'Database not configured correctly' }, { status: 500 })
+    }
     
-    // Apply changes into the nested structure
+    // Save a full, array-safe content tree so sparse dot-path changes render correctly.
+    const currentContent = await getSiteContent()
     const newContent = applyChanges(currentContent, changes)
     
     await kv.set(KV_KEY, newContent)
     
     return NextResponse.json({ ok: true })
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : 'Unknown error'
+    const stack = err instanceof Error ? err.stack : undefined
+
     console.error('Save batch error:', err)
     return NextResponse.json({ 
       error: 'Internal error', 
-      message: err.message,
-      stack: err.stack
+      message,
+      stack
     }, { status: 500 })
   }
 }
