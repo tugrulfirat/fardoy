@@ -41,9 +41,9 @@ export async function POST(req: Request) {
     const KV_KEY = 'fardoy_site_content'
     
     const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-    if (!kvUrl) {
-      console.error('❌ No database URL found (checked KV_REST_API_URL and UPSTASH_REDIS_REST_URL)')
-      return NextResponse.json({ error: 'Database not configured' }, { status: 500 })
+    if (!kvUrl || !kvUrl.startsWith('https://')) {
+      console.error('❌ No valid HTTPS database URL found. Please check your KV_REST_API_URL or UPSTASH_REDIS_REST_URL.')
+      return NextResponse.json({ error: 'Database not configured correctly' }, { status: 500 })
     }
 
     const currentContent = (await kv.get(KV_KEY)) || {}

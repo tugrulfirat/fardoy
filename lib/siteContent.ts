@@ -46,7 +46,9 @@ export async function getSiteContent() {
 
   // 1. Try KV/Upstash in production
   const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL
-  if (kvUrl) {
+  if (!kvUrl || !kvUrl.startsWith('https://')) {
+    console.error('❌ No valid HTTPS database URL found (checked KV_REST_API_URL and UPSTASH_REDIS_REST_URL)')
+  } else {
     try {
       const kvContent = await kv.get(KV_KEY)
       if (kvContent && typeof kvContent === 'object') {
