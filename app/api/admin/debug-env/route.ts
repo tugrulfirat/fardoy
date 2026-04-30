@@ -1,13 +1,32 @@
 import { NextResponse } from 'next/server'
+import { createClient } from '@vercel/kv'
+
+const getUrl = () => {
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env.REDIS_URL || ''
+  return url.startsWith('https://') ? url : 'https://dummy-url.com'
+}
+
+const kv = createClient({
+  url: getUrl(),
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || 'dummy-token',
+})
 
 export async function GET() {
-  const vars = {
-    has_kv_url: !!process.env.KV_REST_API_URL,
-    has_kv_token: !!process.env.KV_REST_API_TOKEN,
-    has_upstash_url: !!process.env.UPSTASH_REDIS_REST_URL,
-    has_upstash_token: !!process.env.UPSTASH_REDIS_REST_TOKEN,
-    has_redis_url: !!process.env.REDIS_URL,
-    url_starts_with_https: (process.env.KV_REST_API_URL || '').startsWith('https://')
+  const result: any = { status: 'testing' }
+  
+  try {
+    await kv.set('test_key', 'test_value')
+    result.write = 'success'
+    
+    const val = await kv.get('test_key')
+    result.read = val
+    
+    result.all_good = true
+  } catch (err: any) {
+    result.error = err.message
+    result.stack = err.stack
   }
-  return NextResponse.json(vars)
+
+  return NextResponse.json(result)
 }
+
