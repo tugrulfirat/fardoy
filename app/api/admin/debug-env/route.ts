@@ -15,12 +15,9 @@ export async function GET() {
   const result: any = { status: 'testing' }
   
   try {
-    await kv.set('test_key', 'test_value')
-    result.write = 'success'
-    
-    const val = await kv.get('test_key')
-    result.read = val
-    
+    const KV_KEY = 'fardoy_site_content'
+    const kvContent = await kv.get(KV_KEY)
+    result.kvContent = kvContent
     result.all_good = true
   } catch (err: any) {
     result.error = err.message
