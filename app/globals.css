@@ -33,6 +33,14 @@ body {
   padding-right: clamp(1.5rem, 6vw, 7rem);
 }
 
+@media (max-width: 767px) {
+  main p:not([class*="uppercase"]):not([class*="text-"]),
+  main p[class*="text-sm"]:not([class*="uppercase"]) {
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+}
+
 .nav-link {
   transition: color 0.5s;
 }
