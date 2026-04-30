@@ -3,9 +3,14 @@ import { createClient } from '@vercel/kv'
 import fs from 'fs'
 import path from 'path'
 
+const getUrl = () => {
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env.REDIS_URL || ''
+  return url.startsWith('https://') ? url : 'https://dummy-url-to-prevent-build-crash.com'
+}
+
 const kv = createClient({
-  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL || process.env.REDIS_URL || '',
-  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || '',
+  url: getUrl(),
+  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN || 'dummy-token',
 })
 
 const CONTENT_FILE = path.join(process.cwd(), 'data/siteContent.json')
