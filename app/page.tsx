@@ -61,9 +61,21 @@ export default function Home() {
                 <InlineEditable contentPath="hero.cta" value={content.hero.cta} multiline={false} />
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </Link>
-              <div className="hidden md:flex w-24 h-24 rounded-full bg-brand-ink text-brand-paper items-center justify-center text-[12px] uppercase tracking-[0.2em] font-bold text-center leading-tight cursor-pointer hover:scale-110 transition-transform animate-float">
+              <button 
+                onClick={() => document.getElementById('strategic-triggers')?.scrollIntoView({ behavior: 'smooth' })}
+                className="hidden md:flex flex-col w-24 h-24 rounded-full bg-brand-red text-brand-paper items-center justify-center text-[10px] uppercase tracking-[0.2em] font-bold text-center leading-tight cursor-pointer hover:scale-110 transition-transform animate-float group"
+              >
                 SCROLL
-              </div>
+                <svg 
+                  className="mt-1 w-4 h-4 group-hover:translate-y-1 transition-transform" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor" 
+                  strokeWidth="3"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -77,13 +89,13 @@ export default function Home() {
             />
           </div>
           <div className="md:col-span-8 relative order-1 md:order-2">
-            <img src="/assets/architecture-strategic.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
+            <img src="/assets/client.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
           </div>
         </div>
       </section>
 
       {/* STRATEGIC TRIGGERS */}
-      <section className="section-pad py-24 md:py-36 bg-brand-sage relative overflow-hidden">
+      <section id="strategic-triggers" className="section-pad py-24 md:py-36 bg-brand-sage relative overflow-hidden">
         <div className="grid md:grid-cols-12 gap-10 relative z-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-8">
@@ -142,7 +154,7 @@ export default function Home() {
       </section>
 
       {/* WHY FARDOY / HIGHLIGHTS */}
-      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
@@ -182,15 +194,15 @@ export default function Home() {
       {/* PRINCIPLES */}
       <section className="py-24 md:py-32 bg-brand-ink text-brand-paper overflow-hidden">
         <div className="section-pad mb-14">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">
+          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block text-center">
             <InlineEditable contentPath="principles.label" value={content.principles.label} multiline={false} />
           </span>
-          <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-3xl">
+          <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-3xl text-center mx-auto">
             <InlineEditable contentPath="principles.title" value={content.principles.title} />
           </h2>
         </div>
-        <div className="pl-6 md:pl-[clamp(4rem,6vw,7rem)] overflow-x-auto pb-4">
-          <div className="flex gap-6 w-max pr-6 md:pr-20">
+        <div className="section-pad overflow-x-auto pb-4">
+          <div className="flex gap-6 lg:justify-center w-max lg:w-full">
               {content.principles.cards.map((card: any, i: number) => (
                 <article key={card.id} className="principle-card w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col justify-between">
                   <div className={`flex gap-3 text-brand-red ${i === 2 ? 'items-end' : 'items-center'}`}>

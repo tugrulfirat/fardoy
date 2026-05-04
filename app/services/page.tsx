@@ -122,12 +122,12 @@ export default function Expertise() {
           </div>
           <div className="md:col-span-4 md:col-start-9 mt-12 md:mt-0">
             <Link href="/consultation" className="group block">
-              <div className="w-full aspect-square rounded-full border border-brand-ink flex flex-col items-center justify-center p-10 hover:bg-brand-red hover:border-brand-red transition-all duration-500">
-                <span className="text-xs uppercase tracking-widest font-bold mb-4 group-hover:text-white transition-colors">Next Move</span>
-                <span className="font-heading text-3xl md:text-4xl text-center leading-tight group-hover:text-white transition-colors">
+              <div className="w-full aspect-square rounded-full bg-brand-red border border-brand-red flex flex-col items-center justify-center p-10 hover:bg-brand-ink hover:border-brand-ink transition-all duration-500">
+                <span className="text-xs uppercase tracking-widest font-bold mb-4 text-white transition-colors">Next Move</span>
+                <span className="font-heading text-3xl md:text-4xl text-center leading-tight text-white transition-colors">
                   <InlineEditable contentPath="expertisePage.closing.cta" value={page.closing.cta} multiline={false} />
                 </span>
-                <svg className="w-6 h-6 mt-6 group-hover:translate-x-2 group-hover:text-white transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                <svg className="w-6 h-6 mt-6 group-hover:translate-x-2 text-white transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
               </div>
             </Link>
           </div>

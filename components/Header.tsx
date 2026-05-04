@@ -9,7 +9,12 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      // Hysteresis prevents "shaking" by having different on/off points
+      if (window.scrollY > 80) {
+        setIsScrolled(true)
+      } else if (window.scrollY < 20) {
+        setIsScrolled(false)
+      }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -19,13 +24,13 @@ export default function Header() {
   const ctaColor = isScrolled ? 'bg-white text-brand-red hover:bg-brand-paper' : 'bg-brand-red text-white hover:bg-brand-ink'
 
   return (
-    <header className={`section-pad sticky top-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-brand-red shadow-lg' : 'bg-brand-paper'}`}>
-      <div className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'py-4' : 'py-5 md:py-10'}`}>
+    <header className={`section-pad sticky top-0 z-50 transition-[background-color,box-shadow] duration-500 ease-in-out ${isScrolled ? 'bg-brand-red shadow-lg' : 'bg-brand-paper'}`}>
+      <div className={`flex items-center justify-between transition-[padding] duration-500 ease-in-out ${isScrolled ? 'py-4' : 'py-5 md:py-10'}`}>
         <Link href="/" className="block w-28 md:w-32" onClick={() => setIsMenuOpen(false)}>
           <img
             src="/assets/logo-dark.svg"
             alt="Fardoy"
-            className={`w-full transition-all duration-500 ${isScrolled ? 'invert brightness-0' : ''}`}
+            className={`w-full transition-[filter] duration-500 ease-in-out ${isScrolled ? 'invert brightness-0' : ''}`}
           />
         </Link>
 
@@ -36,7 +41,7 @@ export default function Header() {
           <Link href="/about" className={`text-[12px] uppercase tracking-[0.3em] font-bold transition-colors duration-500 ${textColor}`}>
             About
           </Link>
-          <Link href="/consultation" className={`text-[12px] uppercase tracking-[0.3em] font-bold px-6 py-3 transition-all duration-500 ${ctaColor}`}>
+          <Link href="/consultation" className={`text-[12px] uppercase tracking-[0.3em] font-bold px-6 py-3 transition-[background-color,color] duration-500 ${ctaColor}`}>
             Inquire
           </Link>
         </nav>
@@ -64,7 +69,7 @@ export default function Header() {
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className={`block py-3 text-[13px] uppercase tracking-[0.24em] font-bold transition-colors duration-500 ${textColor}`}>
               About
             </Link>
-            <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className={`mt-3 flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.24em] font-bold transition-all duration-500 ${ctaColor}`}>
+            <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className={`mt-3 flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.24em] font-bold transition-[background-color,color] duration-500 ${ctaColor}`}>
               Inquire
             </Link>
           </div>
