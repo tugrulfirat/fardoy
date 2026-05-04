@@ -110,28 +110,26 @@ export default function Expertise() {
       </section>
 
       {/* CLOSING SECTION */}
-      <section className="section-pad py-32 md:py-56 bg-brand-paper border-t border-brand-ink border-opacity-10">
+      <section className="section-pad py-24 md:py-32 bg-brand-ink text-brand-paper">
         <div className="grid md:grid-cols-12 gap-10 items-center">
-          <div className="md:col-span-7">
-            <h2 className="font-heading text-4xl md:text-7xl leading-[0.95] mb-10">
+          <div className="md:col-span-8">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">NEXT STEP</span>
+            <h2 className="font-heading text-5xl md:text-7xl leading-none">
               <InlineEditable contentPath="expertisePage.closing.headline" value={page.closing.headline} />
             </h2>
-            <p className="text-xl md:text-2xl text-brand-muted leading-relaxed max-w-2xl">
-              <InlineEditable contentPath="expertisePage.closing.subheadline" value={page.closing.subheadline} />
-            </p>
+            <div className="mt-8">
+              <p className="text-xl md:text-2xl text-brand-paper opacity-70 leading-relaxed max-w-2xl">
+                <InlineEditable contentPath="expertisePage.closing.subheadline" value={page.closing.subheadline} />
+              </p>
+            </div>
           </div>
-          <div className="md:col-span-4 md:col-start-9 mt-12 md:mt-0">
-            <Link href="/consultation" className="group block">
-              <div className="w-full aspect-square rounded-full bg-brand-red border border-brand-red flex flex-col items-center justify-center p-10 hover:bg-brand-ink hover:border-brand-ink transition-all duration-500">
-                <span className="text-xs uppercase tracking-widest font-bold mb-4 text-white transition-colors">Next Move</span>
-                <span className="font-heading text-3xl md:text-4xl text-center leading-tight text-white transition-colors">
-                  <InlineEditable contentPath="expertisePage.closing.cta" value={page.closing.cta} multiline={false} />
-                </span>
-                <svg className="w-6 h-6 mt-6 group-hover:translate-x-2 text-white transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-              </div>
+          <div className="md:col-span-4 flex md:justify-end">
+            <Link href="/consultation" className="w-32 h-32 rounded-full bg-brand-red text-brand-paper flex items-center justify-center text-[12px] uppercase tracking-[0.2em] font-bold text-center leading-relaxed hover:bg-brand-paper hover:text-brand-ink transition-colors">
+              <InlineEditable contentPath="expertisePage.closing.cta" value={page.closing.cta} multiline={false} />
             </Link>
           </div>
         </div>
+        <img src="/assets/team-meeting.png" alt="Strategy meeting" className="w-full aspect-[21/8] object-cover mt-20 grayscale-[20%]" />
       </section>
 
       <Footer />
