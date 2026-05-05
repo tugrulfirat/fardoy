@@ -135,41 +135,57 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
               filteredImages.map((img) => (
                 <div 
                   key={img.url} 
-                  className={`relative group aspect-square bg-white border p-1 transition-all duration-500 overflow-hidden shadow-sm
+                  className={`relative group aspect-square bg-white border p-1 transition-all duration-500 overflow-hidden shadow-sm hover:shadow-md cursor-pointer
                     ${currentUrl === img.url ? 'border-brand-red ring-2 ring-brand-red ring-opacity-20' : 'border-brand-ink/5'}
                   `}
+                  onClick={() => onSelect && onSelect(img.url)}
                 >
-                  <img src={img.url} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" />
+                  <img 
+                    src={img.url} 
+                    alt={img.pathname}
+                    className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" 
+                  />
                   
-                  {/* Actions Overlay */}
-                  <div className="absolute inset-0 bg-brand-ink/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-3 p-4">
-                    {onSelect && (
+                  {/* Selection Indicator Overlay (Subtle) */}
+                  <div className="absolute inset-0 bg-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                  {/* Actions */}
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    {/* Only show delete if it's not a local asset */}
+                    {!img.isLocal && (
                       <button 
-                        onClick={() => onSelect(img.url)}
-                        className="w-full py-2 bg-white text-brand-ink text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-brand-mint"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent selection
+                          handleDelete(img.url);
+                        }}
+                        className="p-2 bg-brand-red text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg"
+                        title="Delete Asset"
                       >
-                        <Check size={14} /> Select
+                        <Trash2 size={14} />
                       </button>
                     )}
-                    <button 
-                      onClick={() => handleDelete(img.url)}
-                      className="w-full py-2 bg-brand-red/20 border border-brand-red/30 text-white text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-brand-red"
-                    >
-                      <Trash2 size={14} /> Delete
-                    </button>
+                    
                     <a 
                       href={img.url} 
                       target="_blank" 
                       rel="noreferrer" 
-                      className="text-[9px] text-white/40 hover:text-white underline tracking-tighter"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2 bg-brand-ink text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg"
+                      title="View Source"
                     >
-                      View Source
+                      <Search size={14} />
                     </a>
                   </div>
 
-                  {currentUrl === img.url && (
-                    <div className="absolute top-3 left-3 bg-brand-red text-white px-2 py-1 text-[8px] font-black uppercase shadow-lg">Active</div>
-                  )}
+                  {/* Badges */}
+                  <div className="absolute bottom-2 left-2 flex flex-col gap-1">
+                    {currentUrl === img.url && (
+                      <div className="bg-brand-red text-white px-2 py-0.5 text-[8px] font-black uppercase shadow-lg">Active</div>
+                    )}
+                    {img.isLocal && (
+                      <div className="bg-brand-ink text-white px-2 py-0.5 text-[8px] font-black uppercase shadow-lg opacity-60">System Asset</div>
+                    )}
+                  </div>
                 </div>
               ))
             )}
