@@ -248,16 +248,14 @@ export default function Expertise() {
         <div className="grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-8">
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">NEXT STEP</span>
-            <h2 className="font-heading text-5xl md:text-7xl leading-none">
+            <h2 className="font-heading text-5xl md:text-7xl leading-none mb-8">
               <InlineEditable contentPath="expertisePage.closing.headline" value={page.closing.headline} />
             </h2>
-            <div className="mt-8">
-              <p className="text-xl md:text-2xl text-brand-paper opacity-70 leading-relaxed max-w-2xl">
-                <InlineEditable contentPath="expertisePage.closing.subheadline" value={page.closing.subheadline} />
-              </p>
-            </div>
+            <p className="text-lg md:text-xl text-brand-mint/60 max-w-2xl font-body leading-relaxed">
+              <InlineEditable contentPath="expertisePage.closing.subheadline" value={page.closing.subheadline} />
+            </p>
           </div>
-          <div className="md:col-span-4 flex md:justify-end">
+          <div className="md:col-span-4 flex md:justify-end mt-8 md:mt-0">
             <Link href="/consultation" className="w-32 h-32 rounded-full bg-brand-red text-brand-paper flex items-center justify-center text-[12px] uppercase tracking-[0.2em] font-bold text-center leading-relaxed hover:bg-brand-paper hover:text-brand-ink transition-colors">
               <InlineEditable contentPath="expertisePage.closing.cta" value={page.closing.cta} multiline={false} />
             </Link>
