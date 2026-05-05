@@ -418,6 +418,11 @@
           "id": "04",
           "title": "Make progress visible",
           "desc": "We help teams create visibility around performance, accountability, and the next move."
+        },
+        {
+          "id": "05",
+          "title": "Measure what matters",
+          "desc": "What gets measured and tracked gets delivered."
         }
       ]
     },
