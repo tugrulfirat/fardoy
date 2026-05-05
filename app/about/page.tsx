@@ -238,11 +238,12 @@ export default function About() {
             <InlineEditable contentPath="aboutPage.principles.title" value={page.principles.title} />
           </h2>
         </div>
-        <div className="section-pad overflow-x-auto pb-4">
-          <div className="flex gap-6 lg:justify-center w-max lg:w-full">
+        <div className="section-pad overflow-x-auto pb-8 scrollbar-hide">
+          <div className="flex gap-6 lg:gap-8 w-max lg:w-full lg:justify-center">
             {page.principles.items.map((item: any, i: number) => (
-              <article key={item.id} className="principle-card w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col justify-between">
-                <div className={`flex gap-3 text-brand-red ${i === 2 ? 'items-end' : 'items-center'}`}>
+              <article key={item.id} className="principle-card w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col shadow-2xl">
+                {/* Geometric Pattern Container - Fixed Height for Alignment */}
+                <div className="h-24 flex items-end gap-3 text-brand-red">
                   {i === 0 && (
                     <>
                       <span className="w-16 h-16 rounded-full border border-current"></span>
@@ -276,8 +277,10 @@ export default function About() {
                     </>
                   )}
                 </div>
-                <div className="mt-16">
-                  <p className="text-xs opacity-50 mb-8">/ {item.id}</p>
+
+                {/* Content Block - Fixed Margin from Pattern Container */}
+                <div className="mt-12">
+                  <p className="text-[10px] font-bold tracking-widest opacity-30 mb-8 uppercase">/ {item.id}</p>
                   <h3 className="font-heading text-4xl mb-5">
                     <InlineEditable contentPath={`aboutPage.principles.items.${i}.title`} value={item.title} multiline={false} />
                   </h3>
@@ -300,10 +303,10 @@ export default function About() {
           <h2 className="font-heading text-5xl md:text-[8vw] leading-[0.9] tracking-tight italic mb-8">
             <InlineEditable contentPath="aboutPage.callout.quote" value={page.callout.quote} />
           </h2>
-          <p className="text-xl md:text-2xl text-brand-mint opacity-60 max-w-xl mx-auto italic mb-12">
+          <p className="text-xl md:text-2xl text-brand-mint opacity-60 max-w-xl mx-auto italic mb-0">
             <InlineEditable contentPath="aboutPage.callout.subquote" value={page.callout.subquote} />
           </p>
-          <p className="text-sm uppercase tracking-[0.3em] font-bold text-brand-mint opacity-40 mb-4">The next step</p>
+          <p className="text-sm uppercase tracking-[0.3em] font-bold text-brand-mint opacity-40 mt-24 mb-6">The next step</p>
           <p className="text-brand-paper font-heading text-2xl md:text-3xl max-w-lg mx-auto leading-relaxed">
             <InlineEditable contentPath="aboutPage.callout.cta" value={page.callout.cta} />
           </p>

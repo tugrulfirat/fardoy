@@ -133,7 +133,7 @@ export default function Expertise() {
                   <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.situations.map((sit: string, j: number) => (
                       <li key={j} className="flex gap-3 relative group/item">
-                        <span>—</span>
+                        <span className="text-brand-red shrink-0">—</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.situations.${j}`} value={sit} />
                         {isAdmin && (
                           <button 
@@ -170,7 +170,7 @@ export default function Expertise() {
                   <ul className={`space-y-4 text-sm leading-relaxed font-bold ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.focus.map((f: string, j: number) => (
                       <li key={j} className="flex gap-3 relative group/item">
-                        <span>0{j+1}</span>
+                        <span className="text-brand-red shrink-0">0{j+1}</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.focus.${j}`} value={f} />
                         {isAdmin && (
                           <button 
@@ -207,7 +207,7 @@ export default function Expertise() {
                   <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.outcomes.map((out: string, j: number) => (
                       <li key={j} className="flex gap-3 relative group/item">
-                        <span className="text-brand-red">●</span>
+                        <span className="text-brand-red shrink-0">●</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.outcomes.${j}`} value={out} />
                         {isAdmin && (
                           <button 
