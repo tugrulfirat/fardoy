@@ -70,8 +70,16 @@ export default function Consultation() {
       <Header />
       
       {/* INQUIRE HERO */}
-      <section className="section-pad pt-20 md:pt-32 pb-24 md:pb-40 bg-brand-paper">
-        <div className="grid md:grid-cols-12 gap-10">
+      <section className="section-pad pt-20 md:pt-28 pb-16 md:pb-20 bg-brand-paper relative overflow-hidden">
+        <div className="hidden lg:block absolute right-[6vw] bottom-8 pointer-events-none z-0 text-right select-none">
+          <div className="font-body font-extralight text-[16vw] leading-none text-brand-ink opacity-[0.045]">
+            01
+          </div>
+          <div className="-mt-6 text-[11px] uppercase tracking-[0.45em] font-bold text-brand-red opacity-70">
+            Conversation
+          </div>
+        </div>
+        <div className="grid md:grid-cols-12 gap-10 relative z-10">
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
@@ -82,16 +90,11 @@ export default function Consultation() {
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight">
               <InlineEditable contentPath="consultationPage.hero.headline" value={page.hero.headline} />
             </h1>
-          </div>
-        </div>
-        <div className="grid md:grid-cols-12 gap-10 mt-16 md:mt-24">
-          <div className="md:col-span-8 md:col-start-1">
-            <p className="font-heading text-2xl md:text-5xl leading-tight mb-8">
-              <InlineEditable contentPath="consultationPage.hero.subheadline" value={page.hero.subheadline} />
-            </p>
-            <p className="font-heading text-xl md:text-3xl text-brand-muted italic">
-              <InlineEditable contentPath="consultationPage.hero.italic" value={page.hero.italic} />
-            </p>
+            <div className="mt-10 md:mt-14 max-w-2xl border-l border-brand-ink/15 pl-6">
+              <p className="font-body text-base md:text-lg leading-relaxed text-brand-muted">
+                <InlineEditable contentPath="consultationPage.hero.subheadline" value={page.hero.subheadline} />
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -171,7 +171,8 @@ export const siteContent = {
   // --- EXPERTISE PAGE ---
   expertisePage: {
     hero: {
-      title: "Strategic Expertise."
+      title: "Strategic Expertise.",
+      subheadline: "For businesses facing complexity, transition, or growth, we bring structure to the decisions that shape what comes next."
     },
     overview: {
       headline: "Four ways we help businesses move from uncertainty to structured growth.",
@@ -278,7 +279,8 @@ export const siteContent = {
         { id: "01", title: "Define the real constraint", desc: "We look beyond symptoms to identify the decision, structure, or operational issue that is actually slowing progress." },
         { id: "02", title: "Choose what not to do", desc: "Growth improves when priorities are fewer, clearer, and owned by the right people." },
         { id: "03", title: "Install execution rhythm", desc: "Strategy becomes useful when it is supported by review cycles, operating routines, SOPs, and clear decision rights." },
-        { id: "04", title: "Make progress visible", desc: "We help teams create visibility around performance, accountability, and the next move." }
+        { id: "04", title: "Make progress visible", desc: "We help teams create visibility around performance, accountability, and the next move." },
+        { id: "05", title: "Measure what matters", desc: "What gets measured and tracked gets delivered." }
       ]
     },
     callout: {

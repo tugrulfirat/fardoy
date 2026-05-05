@@ -21,15 +21,39 @@ export default function Expertise() {
   }
 
   const page = content.expertisePage
+  
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80; // Offset for header
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
     <main className="min-h-screen bg-brand-paper">
       <Header />
       
       {/* EXPERTISE HERO */}
-      <section className="section-pad pt-20 md:pt-32 pb-24 md:pb-32 bg-brand-paper">
-        <div className="grid md:grid-cols-12 gap-10">
-          <div className="md:col-span-10">
+      <section className="section-pad pt-20 md:pt-28 pb-16 md:pb-20 bg-brand-paper relative overflow-hidden">
+        <div className="hidden lg:block absolute right-[6vw] bottom-8 pointer-events-none z-0 text-right select-none">
+          <div className="font-body font-extralight text-[16vw] leading-none text-brand-ink opacity-[0.045]">
+            04
+          </div>
+          <div className="-mt-6 text-[11px] uppercase tracking-[0.45em] font-bold text-brand-red opacity-70">
+            Capabilities
+          </div>
+        </div>
+        <div className="grid md:grid-cols-12 gap-10 relative z-10">
+          <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
               <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Capabilities</span>
@@ -37,6 +61,14 @@ export default function Expertise() {
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight">
               <InlineEditable contentPath="expertisePage.hero.title" value={page.hero.title} />
             </h1>
+            <div className="mt-10 md:mt-14 max-w-2xl border-l border-brand-ink/15 pl-6">
+              <p className="font-body text-base md:text-lg leading-relaxed text-brand-muted">
+                <InlineEditable
+                  contentPath="expertisePage.hero.subheadline"
+                  value={page.hero.subheadline}
+                />
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -53,9 +85,10 @@ export default function Expertise() {
         </div>
         <div className="border-t border-brand-paper border-opacity-10">
           {page.overview.items.map((item: string, i: number) => (
-            <div 
+            <button 
               key={i} 
-              className="group flex items-center justify-between border-b border-brand-paper border-opacity-10 py-7 md:py-9 cursor-default hover:pl-4 transition-all duration-300"
+              onClick={() => scrollToSection(page.services[i].title.toLowerCase().split(' ')[0])}
+              className="w-full text-left group flex items-center justify-between border-b border-brand-paper border-opacity-10 py-7 md:py-9 cursor-pointer hover:pl-4 transition-all duration-300"
             >
               <div className="flex items-center gap-8 md:gap-12">
                 <span className="text-[11px] font-bold tracking-[0.3em] text-brand-mint opacity-50 w-8 shrink-0">
@@ -66,7 +99,7 @@ export default function Expertise() {
                 </span>
               </div>
               <div className="w-8 h-[2px] bg-brand-red opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"></div>
-            </div>
+            </button>
           ))}
         </div>
       </section>
