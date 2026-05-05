@@ -132,7 +132,7 @@ export default function About() {
               <InlineEditable contentPath="aboutPage.difference.title" value={page.difference.title} />
             </h2>
           </div>
-          <div className="md:col-span-7 mt-10 md:mt-0">
+          <div className="md:col-span-7 mt-10 md:mt-24">
             <p className="font-body text-xl md:text-2xl text-brand-muted leading-relaxed mb-12 max-w-2xl">
               <InlineEditable contentPath="aboutPage.difference.headline" value={page.difference.headline} />
             </p>
