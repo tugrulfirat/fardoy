@@ -37,7 +37,7 @@ export default function Contact() {
               <div className="md:col-span-5 space-y-12">
                 <div>
                   <p className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted mb-4">Social</p>
-                  <a href="https://linkedin.com" target="_blank" className="font-heading text-3xl hover:italic hover:text-brand-red transition-all">
+                  <a href="https://www.linkedin.com/company/fardoy" target="_blank" className="font-heading text-3xl hover:italic hover:text-brand-red transition-all">
                     <InlineEditable contentPath="contactPage.enquiries.social" value={page.enquiries.social} multiline={false} />
                   </a>
                 </div>

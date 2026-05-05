@@ -14,6 +14,7 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
   const [loading, setLoading] = useState(false)
   const [uploading, setUploading] = useState(false)
   const [search, setSearch] = useState('')
+  const [deletingUrl, setDeletingUrl] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -52,7 +53,6 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
   }
 
   const handleDelete = async (url: string) => {
-    if (!confirm('Delete this asset permanently?')) return
     try {
       const res = await fetch(`/api/admin/images?url=${url}`, { method: 'DELETE' })
       if (!res.ok) {
@@ -61,6 +61,7 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
         return
       }
       setImages(images.filter(img => img.url !== url))
+      setDeletingUrl(null)
     } catch (err) {
       console.error(err)
       alert('Network error while deleting.')
@@ -106,7 +107,7 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
 
         {/* Content */}
         <div className="flex-grow overflow-y-auto p-8 bg-[#fdfcf9]">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-6">
             
             {/* Upload Box */}
             <button
@@ -149,6 +150,34 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
                   {/* Selection Indicator Overlay (Subtle) */}
                   <div className="absolute inset-0 bg-brand-red/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
+                  {/* Inline Delete Confirmation */}
+                  {deletingUrl === img.url && (
+                    <div className="absolute inset-0 bg-brand-red flex flex-col items-center justify-center p-2 z-20 animate-in fade-in zoom-in duration-200">
+                      <Trash2 size={24} className="text-white mb-2" />
+                      <p className="text-[9px] text-white font-black uppercase tracking-[0.2em] text-center mb-3">Permanently Delete?</p>
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDelete(img.url);
+                          }}
+                          className="bg-white text-brand-red px-3 py-1 text-[9px] font-black uppercase hover:bg-brand-ink hover:text-white transition-colors"
+                        >
+                          Yes
+                        </button>
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setDeletingUrl(null);
+                          }}
+                          className="bg-brand-ink text-white px-3 py-1 text-[9px] font-black uppercase hover:bg-white hover:text-brand-ink transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Actions */}
                   <div className="absolute top-2 right-2 flex gap-2">
                     {/* Only show delete if it's not a local asset */}
@@ -156,7 +185,7 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
                       <button 
                         onClick={(e) => {
                           e.stopPropagation(); // Prevent selection
-                          handleDelete(img.url);
+                          setDeletingUrl(img.url);
                         }}
                         className="p-2 bg-brand-red text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg"
                         title="Delete Asset"

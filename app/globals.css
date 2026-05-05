@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "../node_modules/tailwindcss/index.css";
 
 @theme inline {
   --color-brand-red: #ef4d38;

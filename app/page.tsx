@@ -109,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* WHAT WE DO — SERVICES PREVIEW */}
-      <section className="section-pad pt-20 md:pt-28 pb-24 md:pb-32 bg-brand-ink text-brand-paper">
+      <section className="section-pad pt-16 md:pt-24 pb-20 md:pb-28 bg-brand-ink text-brand-paper">
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16">
           <div>
@@ -119,7 +119,7 @@ export default function Home() {
                 <InlineEditable contentPath="servicesPreview.label" value={content.servicesPreview.label} multiline={false} />
               </span>
             </div>
-            <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-lg">
+            <h2 className="font-heading text-5xl md:text-6xl leading-none max-w-none">
               <InlineEditable contentPath="servicesPreview.title" value={content.servicesPreview.title} />
             </h2>
           </div>
@@ -140,21 +140,21 @@ export default function Home() {
           {content.servicesPreview.items.map((item: any, i: number) => (
             <div
               key={i}
-              className="group relative bg-[#2b3832] min-h-[300px] md:min-h-[340px] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default"
+              className="group relative bg-[#2b3832] min-h-[260px] md:min-h-[300px] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default"
             >
               {/* Red sweep line from left on hover */}
               <div className="absolute top-0 left-0 h-[3px] w-0 bg-brand-red group-hover:w-full transition-all duration-700 ease-out" />
 
               {/* Number — top right, large italic serif, red */}
               <div className="flex justify-end">
-                <span className="font-heading italic text-[5.5rem] md:text-[7rem] leading-none text-brand-red/50 group-hover:text-brand-red transition-colors duration-500 select-none">
+                <span className="font-heading italic text-[4.5rem] md:text-[5.5rem] leading-none text-brand-red/50 group-hover:text-brand-red transition-colors duration-500 select-none">
                   0{i + 1}
                 </span>
               </div>
 
               {/* Content — pinned to bottom */}
               <div>
-                <h3 className="font-heading text-4xl md:text-5xl leading-[1.0] mb-4 group-hover:text-brand-mint transition-colors duration-500">
+                <h3 className="font-heading text-3xl md:text-4xl leading-[1.0] mb-4 group-hover:text-brand-mint transition-colors duration-500">
                   <InlineEditable contentPath={`servicesPreview.items.${i}.title`} value={item.title} multiline={false} />
                 </h3>
                 <p className="font-body text-brand-paper/50 leading-relaxed text-sm md:text-base max-w-xs group-hover:text-brand-paper/75 transition-colors duration-500">
@@ -167,9 +167,9 @@ export default function Home() {
       </section>
 
       {/* STRATEGIC TRIGGERS */}
-      <section id="strategic-triggers" className="section-pad py-24 md:py-36 bg-brand-sage relative overflow-hidden">
-        <div className="grid md:grid-cols-12 gap-10 relative z-10">
-          <div className="md:col-span-5">
+      <section id="strategic-triggers" className="section-pad py-24 md:py-40 bg-brand-sage relative overflow-hidden">
+        <div className="grid md:grid-cols-12 gap-16 md:gap-24 relative z-10 items-start">
+          <div className="md:col-span-5 sticky top-32">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-10 h-[1px] bg-brand-ink"></div>
               <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-ink">
@@ -180,14 +180,14 @@ export default function Home() {
               <InlineEditable contentPath="triggers.title" value={content.triggers.title} />
             </h2>
           </div>
-          <div className="md:col-span-7 flex flex-col justify-center">
-            <ul className="space-y-10">
+          <div className="md:col-span-7">
+            <ul className="divide-y divide-brand-ink/10 border-t border-brand-ink/10">
               {content.triggers.items.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-6 group">
-                  <span className="text-brand-red font-bold mt-2 transform group-hover:scale-125 transition-transform duration-500">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" fill="currentColor"/></svg>
+                <li key={i} className="flex items-start gap-8 py-10 group transition-all duration-500">
+                  <span className="font-heading italic text-4xl text-brand-red opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 select-none">
+                    0{i + 1}
                   </span>
-                  <p className="font-heading text-2xl md:text-4xl leading-tight text-brand-ink opacity-90 group-hover:opacity-100 transition-opacity">
+                  <p className="font-heading text-2xl md:text-4xl leading-tight text-brand-ink group-hover:translate-x-2 transition-transform duration-500">
                     <InlineEditable contentPath={`triggers.items.${i}`} value={item} />
                   </p>
                 </li>
@@ -197,33 +197,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHO WE ARE SECTION */}
-      <section className="section-pad py-24 md:py-36 bg-brand-paper">
-        <div className="grid md:grid-cols-12 gap-10 md:gap-20 items-center max-w-[1440px] mx-auto">
-          <div className="md:col-span-5">
-            <img src="/assets/consultancy-meeting.png" alt="Forward Expansion" className="w-full aspect-[3/4] object-cover transition-all duration-700" />
-          </div>
-          <div className="md:col-span-7 flex flex-col justify-center">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
-                <InlineEditable contentPath="whoWeAre.label" value={content.whoWeAre.label} multiline={false} />
-              </span>
-            </div>
-            <h2 className="font-heading text-5xl md:text-7xl leading-[0.95] mb-8">
-              <InlineEditable contentPath="whoWeAre.headline" value={content.whoWeAre.headline} />
-            </h2>
-            <div className="max-w-[640px]">
-              <p className="font-heading text-2xl md:text-3xl leading-snug mb-6">
-                <InlineEditable contentPath="whoWeAre.subheadline" value={content.whoWeAre.subheadline} />
-              </p>
-              <p className="font-body text-sm text-brand-muted leading-relaxed">
-                <InlineEditable contentPath="whoWeAre.desc" value={content.whoWeAre.desc} />
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* WHY FARDOY / HIGHLIGHTS */}
       <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
@@ -264,7 +237,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
         <div className="mb-20 relative">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
@@ -281,30 +254,34 @@ export default function Home() {
                 <InlineEditable contentPath="testimonials.subtitle" value={content.testimonials.subtitle} />
               </p>
             </div>
-            {/* Single sleek quote icon for the section */}
+            {/* Reduced sleek quote icon for the section */}
             <div className="text-brand-red opacity-10 hidden md:block">
-              <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H12.017V9C12.017 6.23858 14.2556 4 17.017 4H20.017V2H17.017C13.151 2 10.017 5.13401 10.017 9V15C10.017 18.3137 12.7033 21 16.017 21H14.017ZM4.017 21L4.017 18C4.017 16.8954 4.91243 16 6.017 16H9.017C9.56928 16 10.017 15.5523 10.017 15V9C10.017 8.44772 9.56928 8 9.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56928 13 4.017 13H2.017V9C2.017 6.23858 4.25558 4 7.017 4H10.017V2H7.017C3.15097 2 0.017 5.13401 0.017 9V15C0.017 18.3137 2.7033 21 6.017 21H4.017Z" />
               </svg>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-0 border-l border-brand-ink/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {content.testimonials.items.map((t: any, i: number) => (
             <div 
               key={i} 
-              className={`flex flex-col border-r border-b border-brand-ink/10 p-10 md:p-16 group relative transition-all duration-700
-                ${i % 2 === 1 ? 'bg-brand-cream/5' : 'bg-transparent'}
-              `}
+              className="flex flex-col bg-brand-sage p-8 md:p-10 rounded-2xl border border-brand-ink/5 shadow-sm group transition-all duration-500 hover:shadow-md"
             >
-              <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl leading-[1.1] mb-12 text-brand-ink italic relative z-10 group-hover:text-brand-red transition-colors duration-500">
+              <blockquote className="font-heading text-2xl md:text-3xl leading-snug mb-10 text-brand-ink italic relative z-10 group-hover:text-brand-red transition-colors duration-500">
                 <InlineEditable contentPath={`testimonials.items.${i}.quote`} value={t.quote} />
               </blockquote>
               
               <div className="mt-auto relative z-10">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-8 h-[1px] bg-brand-red"></div>
+                  <div className="w-10 h-10 rounded-full bg-white/40 p-1.5 flex items-center justify-center flex-shrink-0 overflow-hidden border border-brand-ink/5">
+                    <ImageEditable 
+                      contentPath={`testimonials.items.${i}.logo`} 
+                      value={t.logo} 
+                      className="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                    />
+                  </div>
                   <div>
                     <p className="font-heading text-xl leading-none mb-1">
                       <InlineEditable contentPath={`testimonials.items.${i}.company`} value={t.company} multiline={false} />
@@ -315,8 +292,8 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="border-t border-brand-ink/10 pt-8">
-                  <p className="text-[11px] uppercase tracking-widest font-bold text-brand-muted opacity-60 leading-relaxed">
+                <div className="inline-block bg-brand-paper/50 px-4 py-1.5 rounded-full border border-brand-ink/10">
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-brand-muted opacity-80">
                     <InlineEditable contentPath={`testimonials.items.${i}.context`} value={t.context} />
                   </p>
                 </div>
@@ -326,61 +303,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRINCIPLES */}
-      <section className="py-24 md:py-32 bg-brand-ink text-brand-paper overflow-hidden">
-        <div className="section-pad mb-14">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block text-center">
-            <InlineEditable contentPath="principles.label" value={content.principles.label} multiline={false} />
-          </span>
-          <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-3xl text-center mx-auto">
-            <InlineEditable contentPath="principles.title" value={content.principles.title} />
-          </h2>
-        </div>
-        <div className="section-pad overflow-x-auto pb-4">
-          <div className="flex gap-6 lg:justify-center w-max lg:w-full">
-              {content.principles.cards.map((card: any, i: number) => (
-                <article key={card.id} className="principle-card w-[280px] md:w-[340px] bg-[#2b3832] p-8 flex flex-col justify-between">
-                  <div className={`flex gap-3 text-brand-red ${i === 2 ? 'items-end' : 'items-center'}`}>
-                    {i === 0 && (
-                      <>
-                        <span className="w-16 h-16 rounded-full border border-current"></span>
-                        <span className="w-16 h-16 bg-current"></span>
-                      </>
-                    )}
-                    {i === 1 && (
-                      <>
-                        <span className="w-16 h-16 rounded-full bg-current"></span>
-                        <span className="w-28 h-16 rounded-full border border-current"></span>
-                      </>
-                    )}
-                    {i === 2 && (
-                      <>
-                        <span className="w-20 h-16 rounded-t-full border border-current"></span>
-                        <span className="w-16 h-16 rounded-full bg-current"></span>
-                        <span className="w-16 h-16 rounded-br-full border border-current"></span>
-                      </>
-                    )}
-                    {i === 3 && (
-                      <>
-                        <span className="w-24 h-16 rounded-l-full bg-current"></span>
-                        <span className="w-16 h-16 border border-current rotate-45"></span>
-                      </>
-                    )}
-                  </div>
-                  <div>
-                    <p className="text-xs opacity-50 mb-8">/ {card.id}</p>
-                    <h3 className="font-heading text-4xl mb-5">
-                      <InlineEditable contentPath={`principles.cards.${i}.title`} value={card.title} multiline={false} />
-                    </h3>
-                    <p className="text-sm text-brand-mint leading-relaxed">
-                      <InlineEditable contentPath={`principles.cards.${i}.desc`} value={card.desc} />
-                    </p>
-                  </div>
-                </article>
-              ))}
-          </div>
-        </div>
-      </section>
 
       {/* LEADERSHIP */}
       <section className="bg-brand-paper">

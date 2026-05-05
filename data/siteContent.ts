@@ -97,36 +97,42 @@ export const siteContent = {
         quote: "Fardoy helped us regain control of operations and improve margins in under six months.",
         author: "Operations Director",
         company: "Nuvera",
+        logo: "/assets/logo-dark.svg",
         context: "Operational restructuring & performance optimisation"
       },
       {
         quote: "We came in without a clear financial structure. Fardoy gave us the clarity we needed to raise.",
         author: "Co-Founder & CEO",
         company: "Axiom",
+        logo: "/assets/logo-dark.svg",
         context: "Investor readiness & financial planning"
       },
       {
         quote: "Their understanding of the hospitality sector meant we didn't have to explain the basics.",
         author: "Managing Director",
         company: "Belvoir",
+        logo: "/assets/logo-dark.svg",
         context: "Hospitality strategy & cost restructuring"
       },
       {
         quote: "Fardoy identified the bottlenecks slowing our growth and gave us a clear path to fix them.",
         author: "Head of Operations",
         company: "Kindfield",
+        logo: "/assets/logo-dark.svg",
         context: "Process optimisation & scaling strategy"
       },
       {
         quote: "The talent strategy work transformed how we hire and retain — a genuine step change.",
         author: "CEO",
         company: "Orenda",
+        logo: "/assets/logo-dark.svg",
         context: "Talent strategy & workforce design"
       },
       {
         quote: "Strategic, senior, and straight to the point. Exactly what a business our size needs.",
         author: "Founder",
         company: "Halston",
+        logo: "/assets/logo-dark.svg",
         context: "Growth strategy & operational systems"
       }
     ]
