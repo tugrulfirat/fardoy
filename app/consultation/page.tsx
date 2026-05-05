@@ -2,6 +2,7 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { InlineEditable } from '@/components/InlineEditable'
+import { FAQItem } from '@/components/FAQItem'
 import { useSiteContent } from '@/components/SiteContentContext'
 import { useEffect, useState } from 'react'
 
@@ -223,28 +224,25 @@ export default function Consultation() {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="section-pad py-24 md:py-32 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
               <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">FAQ</span>
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl leading-tight">
+            <h2 className="font-heading text-5xl md:text-6xl leading-tight">
               <InlineEditable contentPath="consultationPage.faq.title" value={page.faq.title} />
             </h2>
           </div>
-          <div className="md:col-span-7 mt-10 md:mt-0">
-            <div className="space-y-16">
+          <div className="md:col-span-7 mt-12 md:mt-0">
+            <div className="border-t border-brand-ink border-opacity-10">
               {page.faq.items.map((item: any, i: number) => (
-                <div key={i}>
-                  <p className="text-[12px] uppercase tracking-[0.2em] font-bold text-brand-muted mb-4">
-                    <InlineEditable contentPath={`consultationPage.faq.items.${i}.q`} value={item.q} />
-                  </p>
-                  <p className="text-xl md:text-2xl font-heading leading-relaxed max-w-xl">
-                    <InlineEditable contentPath={`consultationPage.faq.items.${i}.a`} value={item.a} />
-                  </p>
-                </div>
+                <FAQItem 
+                  key={i} 
+                  questionNode={<InlineEditable contentPath={`consultationPage.faq.items.${i}.q`} value={item.q} multiline={false} />}
+                  answerNode={<InlineEditable contentPath={`consultationPage.faq.items.${i}.a`} value={item.a} />}
+                />
               ))}
             </div>
           </div>
