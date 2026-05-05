@@ -118,7 +118,7 @@ export default function Expertise() {
                 <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
               </h2>
               <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-                <div className="md:col-span-8">
+                <div className="md:col-span-10">
                   <p className={`font-heading text-2xl md:text-4xl leading-tight mb-16 ${i % 2 === 1 ? 'text-brand-mint text-opacity-90' : 'text-brand-muted'}`}>
                     <InlineEditable contentPath={`expertisePage.services.${i}.desc`} value={service.desc} />
                   </p>
