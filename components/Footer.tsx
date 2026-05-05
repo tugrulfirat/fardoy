@@ -1,12 +1,31 @@
+'use client'
 import Link from 'next/link'
+import { InlineEditable } from './InlineEditable'
+import { ImageEditable } from './ImageEditable'
+import { useSiteContent } from './SiteContentContext'
 
 export default function Footer() {
+  const content = useSiteContent()
+  const footer = content.footer
+
   return (
     <footer className="section-pad bg-brand-paper text-brand-ink py-16 border-t border-brand-ink border-opacity-10">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4">
-          <img src="/assets/logo-dark.svg" alt="Fardoy" className="w-32 mb-8"/>
-          <p className="text-sm text-brand-muted leading-relaxed max-w-xs">Strategy consultancy for startups, SMEs, and scaling businesses.</p>
+          <div className="w-32 mb-8">
+            <ImageEditable 
+              contentPath="footer.logo" 
+              value={footer.logo} 
+              alt="Fardoy" 
+              className="w-full h-auto"
+            />
+          </div>
+          <div className="text-sm text-brand-muted leading-relaxed max-w-xs">
+            <InlineEditable 
+              contentPath="footer.tagline" 
+              value={footer.tagline} 
+            />
+          </div>
         </div>
         <div className="md:col-span-2 md:col-start-6">
           <p className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted mb-5">Menu</p>
@@ -27,7 +46,7 @@ export default function Footer() {
         <div className="flex gap-8">
           <Link href="/privacy" className="hover:text-brand-red">Privacy</Link>
           <Link href="/terms" className="hover:text-brand-red">Terms</Link>
-          <a href="https://linkedin.com" target="_blank" className="hover:text-brand-red">LinkedIn</a>
+          <a href="https://www.linkedin.com/company/fardoy" target="_blank" className="hover:text-brand-red">LinkedIn</a>
         </div>
       </div>
     </footer>

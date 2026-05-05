@@ -42,7 +42,7 @@ export default function Header() {
             About
           </Link>
           <Link href="/consultation" className={`text-[12px] uppercase tracking-[0.3em] font-bold px-6 py-3 transition-[background-color,color] duration-500 ${ctaColor}`}>
-            Inquire
+            Enquire
           </Link>
         </nav>
 
@@ -70,7 +70,7 @@ export default function Header() {
               About
             </Link>
             <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className={`mt-3 flex h-12 w-full items-center justify-center text-[12px] uppercase tracking-[0.24em] font-bold transition-[background-color,color] duration-500 ${ctaColor}`}>
-              Inquire
+              Enquire
             </Link>
           </div>
         </div>

@@ -5,6 +5,37 @@ export const siteContent = {
     subheadline: "Fardoy works with founders, SMEs, and scaling businesses to bring clarity, structure, and financial direction to critical stages of growth.",
     cta: "Start the Conversation"
   },
+  partners: {
+    label: "Who We Partner With",
+    items: [
+      "Startups building strong foundations",
+      "SMEs improving performance and profitability",
+      "Hospitality businesses scaling operations and margins"
+    ]
+  },
+  servicesPreview: {
+    label: "What We Do",
+    title: "Four ways we create momentum.",
+    cta: "Explore Capabilities",
+    items: [
+      {
+        title: "Startup Foundations",
+        desc: "Turn early-stage ideas into structured businesses that are easier to operate, fund, and scale."
+      },
+      {
+        title: "Performance & Profitability",
+        desc: "Optimise what's slowing performance and regain control over costs, operations, and financial visibility."
+      },
+      {
+        title: "Growth Strategy",
+        desc: "Scale your business with clear priorities, aligned teams, and a structure that supports sustainable growth."
+      },
+      {
+        title: "Digital Systems",
+        desc: "Replace manual processes with systems that improve efficiency, consistency, and scalability."
+      }
+    ]
+  },
   triggers: {
     label: "Strategic Triggers",
     title: "When to work with Fardoy.",
@@ -52,14 +83,58 @@ export const siteContent = {
     desc1: "Engagements are founder-led, supported by specialist expertise only where it improves the outcome.",
     desc2: "The goal is a tighter route from decision to implementation.",
     founders: [
-      { name: "Shervin Fard", role: "Talent Strategy Partner" },
-      { name: "Marzieh Fard", role: "Strategic Growth Partner, FCCA" }
+      { name: "Shervin Fard", role: "Talent Strategy Partner", image: "/assets/shervin.png" },
+      { name: "Marzieh Fard", role: "Strategic Growth Partner, FCCA", image: "/assets/marzieh.png" }
     ],
     expertise: "Specialists in Finance, SaaS, Global Talent Strategy, M&A, and Workforce Design."
+  },
+  testimonials: {
+    label: "Testimonials",
+    title: "Trusted by businesses.",
+    subtitle: "What our clients say about working with Fardoy.",
+    items: [
+      {
+        quote: "Fardoy helped us regain control of operations and improve margins in under six months.",
+        author: "Operations Director",
+        company: "Nuvera",
+        context: "Operational restructuring & performance optimisation"
+      },
+      {
+        quote: "We came in without a clear financial structure. Fardoy gave us the clarity we needed to raise.",
+        author: "Co-Founder & CEO",
+        company: "Axiom",
+        context: "Investor readiness & financial planning"
+      },
+      {
+        quote: "Their understanding of the hospitality sector meant we didn't have to explain the basics.",
+        author: "Managing Director",
+        company: "Belvoir",
+        context: "Hospitality strategy & cost restructuring"
+      },
+      {
+        quote: "Fardoy identified the bottlenecks slowing our growth and gave us a clear path to fix them.",
+        author: "Head of Operations",
+        company: "Kindfield",
+        context: "Process optimisation & scaling strategy"
+      },
+      {
+        quote: "The talent strategy work transformed how we hire and retain — a genuine step change.",
+        author: "CEO",
+        company: "Orenda",
+        context: "Talent strategy & workforce design"
+      },
+      {
+        quote: "Strategic, senior, and straight to the point. Exactly what a business our size needs.",
+        author: "Founder",
+        company: "Halston",
+        context: "Growth strategy & operational systems"
+      }
+    ]
   },
   process: {
     label: "How we work",
     title: "Build the best strategy to grow.",
+    image: "/assets/abstract_process.png",
     steps: [
       { id: "01", title: "Diagnose", desc: "We identify constraints, risks, and what is actually slowing progress" },
       { id: "02", title: "Structure", desc: "We define a clear, practical path forward" },
@@ -78,7 +153,13 @@ export const siteContent = {
   },
   cta: {
     headline: "Have a decision to make?",
+    subline: "Focused consultation to understand your position, constraints, and next steps.",
+    image: "/assets/team-meeting.png",
     button: "Start the conversation"
+  },
+  footer: {
+    logo: "/assets/logo-dark.svg",
+    tagline: "Strategy consultancy for startups, SMEs, and scaling businesses."
   },
 
   // --- EXPERTISE PAGE ---
@@ -88,7 +169,12 @@ export const siteContent = {
     },
     overview: {
       headline: "Four ways we help businesses move from uncertainty to structured growth.",
-      items: ["Startup Foundations", "Performance & Profitability", "Growth Strategy", "Digital Systems"]
+      items: ["Startup Foundations", "Performance & Profitability", "Growth Strategy", "Digital Systems"],
+      labels: {
+        situations: "Typical Situations",
+        focus: "What we focus on",
+        outcomes: "What changes after"
+      }
     },
     services: [
       {
@@ -127,7 +213,8 @@ export const siteContent = {
     closing: {
       headline: "Engagements are shaped around the decision in front of you.",
       subheadline: "We do not sell fixed packages. Each engagement is shaped around your stage, constraints, urgency, and internal capability.",
-      cta: "Start the conversation"
+      cta: "Start the conversation",
+      image: "/assets/team-meeting.png"
     }
   },
 
@@ -154,17 +241,27 @@ export const siteContent = {
       title: "Senior judgment, without unnecessary theatre.",
       headline: "Fardoy is intentionally lean and senior-led. We avoid the layers of a traditional consultancy to stay close to the real business problem.",
       desc: "Every engagement is founder-led and supported by a trusted network of specialists only when specific expertise improves the outcome.",
-      points: ["Founder-led engagement", "Specialist network when needed", "Strategy connected to implementation"]
+      points: [
+        { title: "Founder-led engagement", desc: "Direct access to senior judgement throughout the engagement" },
+        { title: "Specialist network when needed", desc: "Additional expertise brought in only where it improves the outcome" },
+        { title: "Strategy connected to implementation", desc: "Decisions translated into clear, actionable outcomes" }
+      ]
+    },
+    team: {
+      label: "Our Team",
+      title: "Founders & Partners"
     },
     founders: [
       {
         name: "Shervin Fard",
         role: "Global Talent Strategy Partner",
+        image: "/assets/shervin.png",
         bio: ["Shervin works across talent strategy, organisational design, and workforce planning in finance and technology sectors.", "He builds the leadership capability and structures required for scaling businesses to move with confidence. His work focuses on aligning talent with the commercial direction of the organization."]
       },
       {
         name: "Marzieh Fard",
         role: "Strategic Growth Partner, FCCA",
+        image: "/assets/marzieh.png",
         bio: ["Marzieh works across financial leadership, strategic planning, M&A, and business transformation.", "A Strategic Growth Partner and FCCA, she works with founders and investors to strengthen financial clarity and commercial decision-making during critical stages of growth and restructuring."]
       }
     ],
@@ -179,32 +276,37 @@ export const siteContent = {
       ]
     },
     callout: {
+      label: "The Fardoy Principle",
       quote: "Be Different, Be Bold.",
       subquote: "Not as a slogan — as a way to make clearer decisions when the obvious path is not enough.",
-      cta: "If you’re at a point where decisions matter more than discussion, the next step is a conversation."
+      cta: "If you’re at a point where decisions matter more than discussion, the next step is a conversation.",
+      buttonText: "Book a Free Consultation"
     }
   },
 
   // --- CONSULTATION PAGE ---
   consultationPage: {
     hero: {
+      label: "START HERE",
       headline: "Have a decision to make?",
       subheadline: "The consultation is a focused conversation designed to understand your business, your constraints, and your next steps.",
       italic: "Direct thinking. Practical direction. Clarity."
     },
     info: {
-      preQual: "To ensure we provide the most value, we work with founders and leadership teams who are ready for strategic change.",
-      availability: "We are currently accepting new engagements for Q3 2025. Typically we only lead 2-3 major transformations concurrently.",
-      quote: "Strategy is about making choices, trade-offs; it's about deliberately choosing to be different.",
-      author: "Michael Porter"
+      preQualTitle: "INITIAL CONVERSATION",
+      preQual: "To ensure we provide the most value, we work with founders and leadership teams who are ready for strategic change."
+    },
+    form: {
+      calendarTitle: "Schedule a consultation",
+      messageTitle: "Or send a message"
     },
     expect: {
+      label: "Process",
       title: "What to expect from the conversation.",
       items: [
         "A clear understanding of your current position",
         "Identification of key constraints and opportunities",
-        "Initial direction based on your situation",
-        "A straightforward decision on whether working together makes sense"
+        "Initial direction based on your situation"
       ],
       callout: "This is not a sales call.",
       subcallout: "It is a focused conversation designed to bring clarity."
@@ -249,5 +351,98 @@ export const siteContent = {
       headline: "Ready to turn strategy into implementation?",
       button: "Start the Conversation"
     }
+  },
+
+  // --- PRIVACY PAGE ---
+  privacyPage: {
+    title: "Privacy Policy",
+    lastUpdated: "Last Updated: May 2025",
+    sections: [
+      {
+        title: "1. Who we are",
+        content: "Fardoy Strategic Consultancy is a UK-based consultancy providing strategic, financial, and operational advisory services. We act as the data controller for the personal data we collect."
+      },
+      {
+        title: "2. Information we collect",
+        content: "We may collect and process the following information:\nContact details (name, email address, telephone number)\nBusiness information (company name, role, sector)\nInformation submitted through enquiry forms or consultations\nTechnical data (IP address, browser type, usage data)"
+      },
+      {
+        title: "3. How we use your information",
+        content: "We use your information to:\nRespond to enquiries and provide consultations\nDeliver and improve our services\nCommunicate with you regarding our services\nMaintain internal records and operational processes\nComply with legal and regulatory obligations"
+      },
+      {
+        title: "4. Lawful basis for processing",
+        content: "We process personal data under the following lawful bases:\nLegitimate interests – to operate and improve our business\nContractual necessity – where we provide services to you\nConsent – where required (e.g. marketing communications)"
+      },
+      {
+        title: "5. Data sharing",
+        content: "We do not sell your personal data. We may share data with:\nProfessional advisers (e.g. legal, accounting)\nService providers supporting our operations (e.g. hosting, analytics)\nAll third parties are required to handle data securely and in accordance with applicable laws."
+      },
+      {
+        title: "6. Data retention",
+        content: "We retain personal data only for as long as necessary to:\nFulfil the purposes outlined above\nComply with legal and regulatory obligations"
+      },
+      {
+        title: "7. Data security",
+        content: "We implement appropriate technical and organisational measures to protect personal data from unauthorised access, loss, or misuse."
+      },
+      {
+        title: "8. Your rights",
+        content: "Under UK GDPR, you have the right to:\nAccess your personal data\nRequest correction or deletion\nRestrict or object to processing\nWithdraw consent (where applicable)\nYou also have the right to lodge a complaint with the Information Commissioner’s Office (ICO)."
+      },
+      {
+        title: "9. Cookies",
+        content: "Our website may use cookies and analytics tools to improve user experience. You can manage cookie preferences through your browser settings."
+      },
+      {
+        title: "10. Contact",
+        content: "For any privacy-related queries, contact: info@fardoy.com"
+      }
+    ]
+  },
+
+  // --- TERMS PAGE ---
+  termsPage: {
+    title: "Terms of Use",
+    lastUpdated: "Last Updated: May 2025",
+    intro: "By accessing and using this website, you agree to comply with these terms. If you do not agree, please do not use the website.",
+    sections: [
+      {
+        title: "1. About this website",
+        content: "This website is operated by Fardoy Strategic Consultancy (Fardoy Limited). It provides information about our services and allows users to make enquiries."
+      },
+      {
+        title: "2. Use of the website",
+        content: "You agree to use this website:\nFor lawful purposes only\nIn a way that does not infringe the rights of others\nWithout attempting to disrupt or compromise the site"
+      },
+      {
+        title: "3. Intellectual property",
+        content: "All content on this website (text, design, graphics, branding) is owned by Fardoy Limited unless otherwise stated. You may not reproduce, distribute, or use content without prior written permission."
+      },
+      {
+        title: "4. No reliance on content",
+        content: "The content on this website is provided for general information only. It does not constitute professional advice, and should not be relied upon as such."
+      },
+      {
+        title: "5. Limitation of liability",
+        content: "We make reasonable efforts to ensure accuracy, but we do not guarantee that content is complete or up to date. We are not liable for any loss arising from reliance on this website."
+      },
+      {
+        title: "6. Third-party links",
+        content: "This website may include links to third-party websites. We are not responsible for the content or practices of those sites."
+      },
+      {
+        title: "7. Availability",
+        content: "We do not guarantee uninterrupted access to the website. We may update, suspend, or withdraw the site at any time."
+      },
+      {
+        title: "8. Governing law",
+        content: "These terms are governed by the laws of England and Wales."
+      },
+      {
+        title: "9. Contact",
+        content: "For any queries regarding these terms: hello@fardoy.com"
+      }
+    ]
   }
 }

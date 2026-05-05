@@ -63,25 +63,37 @@ export function applyChanges<T>(target: T, changes: Record<string, unknown>): T 
 }
 
 export function deepMerge(target: unknown, source: unknown): unknown {
+  // If target and source are both arrays, merge their elements
+  if (Array.isArray(target) && Array.isArray(source)) {
+    const result = [...target]
+    source.forEach((item, index) => {
+      if (index < result.length) {
+        result[index] = deepMerge(result[index], item)
+      } else {
+        result.push(item)
+      }
+    })
+    return result
+  }
+
+  // If source is an array (but target isn't), just return source
   if (Array.isArray(source)) {
     return structuredClone(source)
   }
 
   if (Array.isArray(target) && isObject(source)) {
     const output = [...target]
-
     Object.keys(source).forEach((key) => {
       const index = Number(key)
       if (Number.isInteger(index) && index >= 0) {
         output[index] = deepMerge(output[index], source[key])
       }
     })
-
     return output
   }
 
   if (!isObject(target) || !isObject(source)) {
-    return source ?? target
+    return source !== undefined ? source : target
   }
 
   const output = { ...target }

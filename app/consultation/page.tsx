@@ -3,11 +3,37 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { InlineEditable } from '@/components/InlineEditable'
 import { useSiteContent } from '@/components/SiteContentContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Consultation() {
   const content = useSiteContent()
   const page = content.consultationPage
+
+  const [formState, setFormState] = useState({ name: '', email: '', requirements: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formState),
+      })
+      
+      if (!response.ok) throw new Error('Failed to send')
+      
+      setSubmitted(true)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      alert('There was an error sending your message. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   useEffect(() => {
     // Load Google Calendar script
@@ -49,7 +75,9 @@ export default function Consultation() {
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Engagement</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="consultationPage.hero.label" value={page.hero.label} multiline={false} />
+              </span>
             </div>
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight">
               <InlineEditable contentPath="consultationPage.hero.headline" value={page.hero.headline} />
@@ -75,23 +103,11 @@ export default function Consultation() {
           {/* Info */}
           <div className="md:col-span-4 space-y-16">
             <div>
-              <span className="section-num mb-6 block uppercase tracking-widest text-[12px]">Pre-Qualification</span>
+              <span className="section-num mb-6 block uppercase tracking-widest text-[12px]">
+                <InlineEditable contentPath="consultationPage.info.preQualTitle" value={page.info.preQualTitle} multiline={false} />
+              </span>
               <p className="text-brand-muted leading-relaxed text-lg">
                 <InlineEditable contentPath="consultationPage.info.preQual" value={page.info.preQual} />
-              </p>
-            </div>
-            <div>
-              <span className="section-num mb-6 block uppercase tracking-widest text-[12px]">Availability</span>
-              <p className="text-brand-muted leading-relaxed text-lg">
-                <InlineEditable contentPath="consultationPage.info.availability" value={page.info.availability} />
-              </p>
-            </div>
-            <div className="p-8 bg-brand-paper border border-brand-ink border-opacity-5">
-              <p className="font-heading text-2xl mb-4 italic">
-                "<InlineEditable contentPath="consultationPage.info.quote" value={page.info.quote} />"
-              </p>
-              <p className="text-[12px] uppercase tracking-[0.2em] font-bold text-brand-muted">
-                — <InlineEditable contentPath="consultationPage.info.author" value={page.info.author} multiline={false} />
               </p>
             </div>
           </div>
@@ -100,35 +116,69 @@ export default function Consultation() {
           <div className="md:col-span-8">
             <div className="max-w-3xl">
               <div className="mb-16">
-                <h3 className="font-heading text-3xl mb-8 italic">Choose a time to speak.</h3>
+                <h3 className="font-heading text-3xl mb-8 italic">
+                  <InlineEditable contentPath="consultationPage.form.calendarTitle" value={page.form.calendarTitle} multiline={false} />
+                </h3>
                 <div id="calendar-button-target"></div>
               </div>
 
               <div className="w-full h-[1px] bg-brand-ink opacity-10 my-16"></div>
 
-              <h3 className="font-heading text-3xl mb-12 italic">Or send a message.</h3>
-              <form className="grid gap-12">
-                <div className="grid md:grid-cols-2 gap-12">
-                  <div className="border-b border-brand-ink border-opacity-20 pb-4">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Full Name</label>
-                    <input type="text" className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20" placeholder="John Doe" />
+              <h3 className="font-heading text-3xl mb-12 italic">
+                <InlineEditable contentPath="consultationPage.form.messageTitle" value={page.form.messageTitle} multiline={false} />
+              </h3>
+              {submitted ? (
+                <div className="bg-brand-mint/10 p-12 border border-brand-mint/20 text-center">
+                  <h4 className="font-heading text-3xl mb-4 italic">Message Sent.</h4>
+                  <p className="text-brand-muted">We'll be in touch with you at {formState.email} shortly.</p>
+                  <button onClick={() => setSubmitted(false)} className="mt-8 text-xs uppercase tracking-widest font-bold text-brand-red">Send another message</button>
+                </div>
+              ) : (
+                <form className="grid gap-12" onSubmit={handleSubmit}>
+                  <div className="grid md:grid-cols-2 gap-12">
+                    <div className="border-b border-brand-ink border-opacity-20 pb-4">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Full Name</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
+                        className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20" 
+                        placeholder="John Doe" 
+                      />
+                    </div>
+                    <div className="border-b border-brand-ink border-opacity-20 pb-4">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Email Address</label>
+                      <input 
+                        type="email" 
+                        required
+                        value={formState.email}
+                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                        className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20" 
+                        placeholder="name@company.com" 
+                      />
+                    </div>
                   </div>
                   <div className="border-b border-brand-ink border-opacity-20 pb-4">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Email Address</label>
-                    <input type="email" className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20" placeholder="name@company.com" />
+                    <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Requirements</label>
+                    <textarea 
+                      required
+                      value={formState.requirements}
+                      onChange={(e) => setFormState({ ...formState, requirements: e.target.value })}
+                      className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20 min-h-[120px]" 
+                      placeholder="Briefly describe your current challenges..."
+                    ></textarea>
                   </div>
-                </div>
-                <div className="border-b border-brand-ink border-opacity-20 pb-4">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-brand-muted block mb-4">Requirements</label>
-                  <textarea className="w-full bg-transparent font-heading text-2xl outline-none placeholder:opacity-20 min-h-[120px]" placeholder="Briefly describe your current challenges..."></textarea>
-                </div>
-                <button type="submit" className="group flex items-center gap-8 mt-8">
-                  <span className="font-heading text-4xl md:text-5xl group-hover:text-brand-red transition-colors">Start the Conversation</span>
-                  <span className="w-16 h-16 rounded-full border border-brand-ink flex items-center justify-center group-hover:bg-brand-red group-hover:border-brand-red transition-all duration-300">
-                    <svg className="w-6 h-6 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-                  </span>
-                </button>
-              </form>
+                  <button type="submit" disabled={isSubmitting} className="group flex items-center gap-8 mt-8 disabled:opacity-50">
+                    <span className="font-heading text-4xl md:text-5xl group-hover:text-brand-red transition-colors">
+                      {isSubmitting ? 'Sending...' : 'Start the Conversation'}
+                    </span>
+                    <span className="w-16 h-16 rounded-full border border-brand-ink flex items-center justify-center group-hover:bg-brand-red group-hover:border-brand-red transition-all duration-300">
+                      <svg className="w-6 h-6 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    </span>
+                  </button>
+                </form>
+              )}
             </div>
           </div>
         </div>
@@ -140,7 +190,9 @@ export default function Consultation() {
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Process</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="consultationPage.expect.label" value={page.expect.label} multiline={false} />
+              </span>
             </div>
             <h2 className="font-heading text-4xl md:text-5xl leading-tight">
               <InlineEditable contentPath="consultationPage.expect.title" value={page.expect.title} />

@@ -4,6 +4,7 @@ import Footer from '@/components/Footer'
 import { InlineEditable } from '@/components/InlineEditable'
 import { useSiteContent } from '@/components/SiteContentContext'
 import { FAQItem } from '@/components/FAQItem'
+import { ImageEditable } from '@/components/ImageEditable'
 import Link from 'next/link'
 
 export default function Home() {
@@ -80,17 +81,88 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-12 gap-6 mt-20 md:mt-32 items-stretch">
-          <div className="md:col-span-4 relative order-2 md:order-1 min-h-[300px]">
-            <img 
-              src="/assets/office-minimal.png" 
-              alt="Office Interior" 
-              className="w-full h-full md:absolute md:inset-0 object-cover" 
-            />
+      </section>
+      
+      {/* WHO WE PARTNER WITH STRIP */}
+      <section className="section-pad py-16 md:py-20 border-y border-brand-ink/10 bg-brand-paper">
+        <div className="flex items-center gap-2 mb-10">
+          <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
+          <span className="text-[11px] uppercase tracking-[0.35em] font-bold text-brand-muted">
+            <InlineEditable contentPath="partners.label" value={content.partners.label} multiline={false} />
+          </span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {content.partners.items.map((partner: string, i: number) => (
+            <div
+              key={i}
+              className="group relative border-t border-brand-ink/15 md:border-t-0 md:border-l first:border-l-0 border-brand-ink/15 px-0 md:px-10 py-8 md:py-0 first:pl-0 flex flex-col gap-4 hover:opacity-60 transition-opacity duration-300 cursor-default"
+            >
+              <span className="text-brand-red font-body text-[11px] uppercase tracking-[0.3em] font-bold">
+                0{i + 1}
+              </span>
+              <p className="font-heading text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight text-brand-ink">
+                <InlineEditable contentPath={`partners.items.${i}`} value={partner} />
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* WHAT WE DO — SERVICES PREVIEW */}
+      <section className="section-pad pt-20 md:pt-28 pb-24 md:pb-32 bg-brand-ink text-brand-paper">
+        {/* Section header */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <div className="w-8 h-[1px] bg-brand-paper opacity-20"></div>
+              <span className="text-[11px] uppercase tracking-[0.35em] font-bold text-brand-mint">
+                <InlineEditable contentPath="servicesPreview.label" value={content.servicesPreview.label} multiline={false} />
+              </span>
+            </div>
+            <h2 className="font-heading text-5xl md:text-7xl leading-none max-w-lg">
+              <InlineEditable contentPath="servicesPreview.title" value={content.servicesPreview.title} />
+            </h2>
           </div>
-          <div className="md:col-span-8 relative order-1 md:order-2">
-            <img src="/assets/client.png" alt="Strategic Environment" className="w-full aspect-video object-cover" />
-          </div>
+          <Link
+            href="/services"
+            className="group inline-flex items-center gap-4 text-[11px] uppercase tracking-[0.3em] font-bold text-brand-paper border border-brand-paper/20 px-7 py-4 hover:bg-brand-red hover:border-brand-red transition-all duration-500 self-start md:self-auto flex-shrink-0"
+          >
+            <InlineEditable contentPath="servicesPreview.cta" value={content.servicesPreview.cta} multiline={false} />
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </Link>
+        </div>
+
+        {/* 4 floating service cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {content.servicesPreview.items.map((item: any, i: number) => (
+            <div
+              key={i}
+              className="group relative bg-[#2b3832] min-h-[300px] md:min-h-[340px] p-8 md:p-10 flex flex-col justify-between overflow-hidden cursor-default"
+            >
+              {/* Red sweep line from left on hover */}
+              <div className="absolute top-0 left-0 h-[3px] w-0 bg-brand-red group-hover:w-full transition-all duration-700 ease-out" />
+
+              {/* Number — top right, large italic serif, red */}
+              <div className="flex justify-end">
+                <span className="font-heading italic text-[5.5rem] md:text-[7rem] leading-none text-brand-red/50 group-hover:text-brand-red transition-colors duration-500 select-none">
+                  0{i + 1}
+                </span>
+              </div>
+
+              {/* Content — pinned to bottom */}
+              <div>
+                <h3 className="font-heading text-4xl md:text-5xl leading-[1.0] mb-4 group-hover:text-brand-mint transition-colors duration-500">
+                  <InlineEditable contentPath={`servicesPreview.items.${i}.title`} value={item.title} multiline={false} />
+                </h3>
+                <p className="font-body text-brand-paper/50 leading-relaxed text-sm md:text-base max-w-xs group-hover:text-brand-paper/75 transition-colors duration-500">
+                  <InlineEditable contentPath={`servicesPreview.items.${i}.desc`} value={item.desc} />
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -191,6 +263,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TESTIMONIALS SECTION */}
+      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
+        <div className="mb-20 relative">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
+            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+              <InlineEditable contentPath="testimonials.label" value={content.testimonials.label} multiline={false} />
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+            <div>
+              <h2 className="font-heading text-5xl md:text-7xl leading-tight">
+                <InlineEditable contentPath="testimonials.title" value={content.testimonials.title} />
+              </h2>
+              <p className="font-body text-brand-muted mt-4 text-lg">
+                <InlineEditable contentPath="testimonials.subtitle" value={content.testimonials.subtitle} />
+              </p>
+            </div>
+            {/* Single sleek quote icon for the section */}
+            <div className="text-brand-red opacity-10 hidden md:block">
+              <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H12.017V9C12.017 6.23858 14.2556 4 17.017 4H20.017V2H17.017C13.151 2 10.017 5.13401 10.017 9V15C10.017 18.3137 12.7033 21 16.017 21H14.017ZM4.017 21L4.017 18C4.017 16.8954 4.91243 16 6.017 16H9.017C9.56928 16 10.017 15.5523 10.017 15V9C10.017 8.44772 9.56928 8 9.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56928 13 4.017 13H2.017V9C2.017 6.23858 4.25558 4 7.017 4H10.017V2H7.017C3.15097 2 0.017 5.13401 0.017 9V15C0.017 18.3137 2.7033 21 6.017 21H4.017Z" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-0 gap-y-0 border-l border-brand-ink/10">
+          {content.testimonials.items.map((t: any, i: number) => (
+            <div 
+              key={i} 
+              className={`flex flex-col border-r border-b border-brand-ink/10 p-10 md:p-16 group relative transition-all duration-700
+                ${i % 2 === 1 ? 'bg-brand-cream/5' : 'bg-transparent'}
+              `}
+            >
+              <blockquote className="font-heading text-2xl md:text-3xl lg:text-4xl leading-[1.1] mb-12 text-brand-ink italic relative z-10 group-hover:text-brand-red transition-colors duration-500">
+                <InlineEditable contentPath={`testimonials.items.${i}.quote`} value={t.quote} />
+              </blockquote>
+              
+              <div className="mt-auto relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-8 h-[1px] bg-brand-red"></div>
+                  <div>
+                    <p className="font-heading text-xl leading-none mb-1">
+                      <InlineEditable contentPath={`testimonials.items.${i}.company`} value={t.company} multiline={false} />
+                    </p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-red">
+                      <InlineEditable contentPath={`testimonials.items.${i}.author`} value={t.author} multiline={false} />
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="border-t border-brand-ink/10 pt-8">
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-brand-muted opacity-60 leading-relaxed">
+                    <InlineEditable contentPath={`testimonials.items.${i}.context`} value={t.context} />
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* PRINCIPLES */}
       <section className="py-24 md:py-32 bg-brand-ink text-brand-paper overflow-hidden">
         <div className="section-pad mb-14">
@@ -279,7 +414,12 @@ export default function Home() {
                   <InlineEditable contentPath="leadership.founders.0.role" value={content.leadership.founders[0].role} multiline={false} />
                 </p>
               </div>
-              <img src="/assets/shervin.png" alt="Shervin Fard" className="w-full aspect-[4/5] object-cover grayscale" />
+              <ImageEditable 
+                contentPath="leadership.founders.0.image" 
+                value={content.leadership.founders[0].image} 
+                alt="Shervin Fard" 
+                className="w-full aspect-[4/5] object-cover grayscale" 
+              />
             </div>
             <div className="md:col-span-4 bg-brand-cream pt-8 md:translate-y-14">
               <div className="px-8 pb-8">
@@ -290,12 +430,26 @@ export default function Home() {
                   <InlineEditable contentPath="leadership.founders.1.role" value={content.leadership.founders[1].role} multiline={false} />
                 </p>
               </div>
-              <img src="/assets/marzieh.png" alt="Marzieh Fard" className="w-full aspect-[4/5] object-cover object-top grayscale" />
+              <ImageEditable 
+                contentPath="leadership.founders.1.image" 
+                value={content.leadership.founders[1].image} 
+                alt="Marzieh Fard" 
+                className="w-full aspect-[4/5] object-cover object-top grayscale" 
+              />
             </div>
-            <div className="md:col-span-3 pb-10">
-              <p className="text-brand-muted leading-relaxed italic">
+            <div className="md:col-span-3 pb-10 flex flex-col justify-between">
+              <p className="text-brand-muted leading-relaxed italic mb-12">
                 <InlineEditable contentPath="leadership.expertise" value={content.leadership.expertise} />
               </p>
+              <div className="flex md:justify-end">
+                <Link 
+                  href="/about#team" 
+                  className="w-32 h-32 rounded-full bg-brand-red text-brand-paper flex flex-col items-center justify-center text-[11px] uppercase tracking-[0.2em] font-bold text-center leading-tight hover:bg-brand-ink hover:text-white transition-colors"
+                >
+                  <span>Meet the</span>
+                  <span>team &rarr;</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -318,7 +472,12 @@ export default function Home() {
         
         <div className="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
           <div className="md:col-span-7 relative group overflow-hidden">
-            <img src="/assets/abstract_process.png" alt="Structured strategy process" className="w-full aspect-[4/3] md:aspect-video object-cover grayscale-[10%] group-hover:scale-105 transition-transform duration-700" />
+            <ImageEditable 
+              contentPath="process.image" 
+              value={content.process.image} 
+              alt="Structured strategy process" 
+              className="grayscale-[10%] group-hover:scale-105 transition-transform duration-700" 
+            />
           </div>
           <div className="md:col-span-5 flex flex-col justify-center">
             <div className="space-y-12">
@@ -372,17 +531,27 @@ export default function Home() {
         <div className="grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-8">
             <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">NEXT STEP</span>
-            <h2 className="font-heading text-5xl md:text-7xl leading-none">
+            <h2 className="font-heading text-5xl md:text-7xl leading-none mb-8">
               <InlineEditable contentPath="cta.headline" value={content.cta.headline} />
             </h2>
+            <p className="text-lg md:text-xl text-brand-mint/60 max-w-2xl font-body leading-relaxed">
+              <InlineEditable contentPath="cta.subline" value={content.cta.subline} />
+            </p>
           </div>
-          <div className="md:col-span-4 flex md:justify-end">
+          <div className="md:col-span-4 flex md:justify-end mt-8 md:mt-0">
             <Link href="/consultation" className="w-32 h-32 rounded-full bg-brand-red text-brand-paper flex items-center justify-center text-[12px] uppercase tracking-[0.2em] font-bold text-center leading-relaxed hover:bg-brand-paper hover:text-brand-ink transition-colors">
               <InlineEditable contentPath="cta.button" value={content.cta.button} />
             </Link>
           </div>
         </div>
-        <img src="/assets/team-meeting.png" alt="Strategy meeting" className="w-full aspect-[21/8] object-cover mt-20 grayscale-[20%]" />
+        <div className="mt-20">
+          <ImageEditable 
+            contentPath="cta.image" 
+            value={content.cta.image} 
+            alt="Strategy meeting" 
+            className="w-full aspect-[21/8] object-cover grayscale-[20%]" 
+          />
+        </div>
       </section>
 
       <Footer />

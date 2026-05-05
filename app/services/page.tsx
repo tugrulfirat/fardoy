@@ -2,11 +2,24 @@
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { InlineEditable } from '@/components/InlineEditable'
+import { ImageEditable } from '@/components/ImageEditable'
 import { useSiteContent } from '@/components/SiteContentContext'
+import { useIsAdmin } from '@/hooks/useIsAdmin'
+import { useDraft } from '@/components/DraftContext'
 import Link from 'next/link'
 
 export default function Expertise() {
   const content = useSiteContent()
+  const { isAdmin } = useIsAdmin()
+  const { updateDraft } = useDraft()
+  if (!content?.expertisePage) {
+    return (
+      <main className="min-h-screen bg-brand-paper flex items-center justify-center">
+        <div className="animate-pulse text-brand-muted uppercase tracking-widest text-xs">Loading...</div>
+      </main>
+    )
+  }
+
   const page = content.expertisePage
 
   return (
@@ -29,22 +42,32 @@ export default function Expertise() {
       </section>
 
       {/* OVERVIEW INDEX SECTION */}
-      <section className="section-pad py-16 md:py-24 bg-brand-paper border-y border-brand-ink border-opacity-10">
-        <div className="grid md:grid-cols-12 gap-10 items-end">
-          <div className="md:col-span-5">
-            <p className="font-heading text-2xl md:text-3xl leading-snug">
+      <section className="section-pad py-20 md:py-32 bg-brand-ink text-brand-paper">
+        <div className="grid md:grid-cols-12 gap-10 items-start mb-16 md:mb-24">
+          <div className="md:col-span-6">
+            <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-brand-mint opacity-70 block mb-6">What we do</span>
+            <p className="font-heading text-3xl md:text-4xl lg:text-5xl leading-tight text-brand-paper">
               <InlineEditable contentPath="expertisePage.overview.headline" value={page.overview.headline} />
             </p>
           </div>
-          <div className="md:col-span-7">
-            <div className="grid grid-cols-2 gap-y-6 md:gap-y-8">
-              {page.overview.items.map((item: string, i: number) => (
-                <div key={i} className="text-[12px] uppercase tracking-widest font-bold opacity-60">
+        </div>
+        <div className="border-t border-brand-paper border-opacity-10">
+          {page.overview.items.map((item: string, i: number) => (
+            <div 
+              key={i} 
+              className="group flex items-center justify-between border-b border-brand-paper border-opacity-10 py-7 md:py-9 cursor-default hover:pl-4 transition-all duration-300"
+            >
+              <div className="flex items-center gap-8 md:gap-12">
+                <span className="text-[11px] font-bold tracking-[0.3em] text-brand-mint opacity-50 w-8 shrink-0">
+                  0{i + 1}
+                </span>
+                <span className="font-heading text-2xl md:text-3xl text-brand-paper group-hover:text-brand-mint transition-colors duration-300">
                   <InlineEditable contentPath={`expertisePage.overview.items.${i}`} value={item} multiline={false} />
-                </div>
-              ))}
+                </span>
+              </div>
+              <div className="w-8 h-[2px] bg-brand-red opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"></div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
 
@@ -71,37 +94,115 @@ export default function Expertise() {
               
               <div className={`grid md:grid-cols-3 gap-12 border-t pt-16 ${i % 2 === 1 ? 'border-brand-paper border-opacity-10' : 'border-brand-ink border-opacity-10'}`}>
                 <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>Typical Situations</p>
+                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
+                    <InlineEditable contentPath="expertisePage.overview.labels.situations" value={page.overview.labels.situations} multiline={false} />
+                  </p>
                   <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.situations.map((sit: string, j: number) => (
-                      <li key={j} className="flex gap-3">
+                      <li key={j} className="flex gap-3 relative group/item">
                         <span>—</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.situations.${j}`} value={sit} />
+                        {isAdmin && (
+                          <button 
+                            onClick={() => {
+                              if (confirm('Remove this item?')) {
+                                const newList = service.situations.filter((_: any, idx: number) => idx !== j)
+                                updateDraft(`expertisePage.services.${i}.situations`, newList)
+                              }
+                            }}
+                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                          >
+                            ×
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>
+                  {isAdmin && (
+                    <button 
+                      onClick={() => {
+                        const newList = [...service.situations, "New situation item..."]
+                        updateDraft(`expertisePage.services.${i}.situations`, newList)
+                      }}
+                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                    >
+                      + Add Item
+                    </button>
+                  )}
                 </div>
                 <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>What we focus on</p>
+                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
+                    <InlineEditable contentPath="expertisePage.overview.labels.focus" value={page.overview.labels.focus} multiline={false} />
+                  </p>
                   <ul className={`space-y-4 text-sm leading-relaxed font-bold ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.focus.map((f: string, j: number) => (
-                      <li key={j} className="flex gap-3">
+                      <li key={j} className="flex gap-3 relative group/item">
                         <span>0{j+1}</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.focus.${j}`} value={f} />
+                        {isAdmin && (
+                          <button 
+                            onClick={() => {
+                              if (confirm('Remove this item?')) {
+                                const newList = service.focus.filter((_: any, idx: number) => idx !== j)
+                                updateDraft(`expertisePage.services.${i}.focus`, newList)
+                              }
+                            }}
+                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                          >
+                            ×
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>
+                  {isAdmin && (
+                    <button 
+                      onClick={() => {
+                        const newList = [...service.focus, "New focus item..."]
+                        updateDraft(`expertisePage.services.${i}.focus`, newList)
+                      }}
+                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                    >
+                      + Add Item
+                    </button>
+                  )}
                 </div>
                 <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>What changes after</p>
+                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
+                    <InlineEditable contentPath="expertisePage.overview.labels.outcomes" value={page.overview.labels.outcomes} multiline={false} />
+                  </p>
                   <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
                     {service.outcomes.map((out: string, j: number) => (
-                      <li key={j} className="flex gap-3">
+                      <li key={j} className="flex gap-3 relative group/item">
                         <span className="text-brand-red">●</span>
                         <InlineEditable contentPath={`expertisePage.services.${i}.outcomes.${j}`} value={out} />
+                        {isAdmin && (
+                          <button 
+                            onClick={() => {
+                              if (confirm('Remove this item?')) {
+                                const newList = service.outcomes.filter((_: any, idx: number) => idx !== j)
+                                updateDraft(`expertisePage.services.${i}.outcomes`, newList)
+                              }
+                            }}
+                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                          >
+                            ×
+                          </button>
+                        )}
                       </li>
                     ))}
                   </ul>
+                  {isAdmin && (
+                    <button 
+                      onClick={() => {
+                        const newList = [...service.outcomes, "New outcome item..."]
+                        updateDraft(`expertisePage.services.${i}.outcomes`, newList)
+                      }}
+                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                    >
+                      + Add Item
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -129,7 +230,14 @@ export default function Expertise() {
             </Link>
           </div>
         </div>
-        <img src="/assets/team-meeting.png" alt="Strategy meeting" className="w-full aspect-[21/8] object-cover mt-20 grayscale-[20%]" />
+        <div className="mt-20">
+          <ImageEditable 
+            contentPath="expertisePage.closing.image" 
+            value={page.closing.image} 
+            alt="Strategy meeting"
+            className="w-full aspect-[21/8] object-cover grayscale-[20%]"
+          />
+        </div>
       </section>
 
       <Footer />

@@ -15,9 +15,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
+    const currentContent = await getSiteContent()
+    const newContent = applyChanges(currentContent, changes)
+
     if (!hasValidKvConfig()) {
-      console.error('❌ No valid HTTPS database URL found. Please check your KV_REST_API_URL or UPSTASH_REDIS_REST_URL.')
-      return NextResponse.json({ error: 'Database not configured correctly' }, { status: 500 })
+      try {
+        const fs = require('fs')
+        const path = require('path')
+        const CONTENT_FILE = path.join(process.cwd(), 'data/siteContent.json')
+        fs.writeFileSync(CONTENT_FILE, JSON.stringify(newContent, null, 2))
+        console.log('✅ Changes saved locally to data/siteContent.json')
+        return NextResponse.json({ ok: true, source: 'local' })
+      } catch (fsErr) {
+        console.error('❌ Failed to save locally:', fsErr)
+        return NextResponse.json({ error: 'Failed to save to local file system' }, { status: 500 })
+      }
     }
 
     const kv = getKvClient()
@@ -25,13 +37,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Database not configured correctly' }, { status: 500 })
     }
     
-    // Save a full, array-safe content tree so sparse dot-path changes render correctly.
-    const currentContent = await getSiteContent()
-    const newContent = applyChanges(currentContent, changes)
-    
     await kv.set(KV_KEY, newContent)
-    
-    return NextResponse.json({ ok: true })
+    return NextResponse.json({ ok: true, source: 'kv' })
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : 'Unknown error'
     const stack = err instanceof Error ? err.stack : undefined
