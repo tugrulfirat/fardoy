@@ -112,7 +112,7 @@ export default function Expertise() {
             id={service.title.toLowerCase().split(' ')[0]} 
             className={`section-pad py-24 md:py-40 ${i % 2 === 1 ? 'bg-brand-ink text-brand-paper' : 'bg-brand-paper'}`}
           >
-            <div className="max-w-6xl">
+            <div className="max-w-6xl mx-auto">
               <span className={`section-num mb-8 block ${i % 2 === 1 ? 'text-brand-mint' : ''}`}>/ {service.id}</span>
               <h2 className="font-heading text-5xl md:text-8xl leading-[0.9] mb-12">
                 <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
