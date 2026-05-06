@@ -84,7 +84,7 @@ export default function Home() {
       </section>
       
       {/* WHO WE PARTNER WITH STRIP */}
-      <section className="section-pad py-16 md:py-20 border-y border-brand-ink/10 bg-brand-paper">
+      <section className="section-pad py-16 md:py-20 border-y border-brand-ink/10 bg-brand-cream">
         <div className="flex items-center gap-2 mb-10">
           <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
           <span className="text-[11px] uppercase tracking-[0.35em] font-bold text-brand-muted">
@@ -303,6 +303,48 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HOW WE WORK */}
+      <section className="section-pad py-24 md:py-32 bg-brand-paper">
+        <div className="max-w-4xl mb-16">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
+            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted">
+              <InlineEditable contentPath="process.label" value={content.process.label} multiline={false} />
+            </span>
+          </div>
+          <h2 className="font-heading text-5xl md:text-7xl leading-tight">
+            <InlineEditable contentPath="process.title" value={content.process.title} />
+          </h2>
+        </div>
+        
+        <div className="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
+          <div className="md:col-span-7 relative group overflow-hidden">
+            <ImageEditable 
+              contentPath="process.image" 
+              value={content.process.image} 
+              alt="Structured strategy process" 
+              className="grayscale-[10%] group-hover:scale-105 transition-transform duration-700" 
+            />
+          </div>
+          <div className="md:col-span-5 flex flex-col justify-center">
+            <div className="space-y-12">
+              {content.process.steps.map((step: any, i: number) => (
+                <div key={i}>
+                  <p className="text-brand-red font-body text-[12px] uppercase tracking-[0.3em] font-bold mb-3">{step.id}</p>
+                  <h3 className="font-heading text-3xl md:text-4xl mb-3">
+                    <InlineEditable contentPath={`process.steps.${i}.title`} value={step.title} multiline={false} />
+                  </h3>
+                  <p className="font-body text-brand-muted leading-relaxed text-lg">
+                    <InlineEditable contentPath={`process.steps.${i}.desc`} value={step.desc} />
+                  </p>
+                  {i < 2 && <div className="w-full h-[1px] bg-brand-ink opacity-10 mt-12"></div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* LEADERSHIP */}
       <section className="bg-brand-cream">
@@ -376,48 +418,6 @@ export default function Home() {
           </div>
         </div>
         <div className="bg-brand-ink h-28 md:h-44"></div>
-      </section>
-
-      {/* HOW WE WORK */}
-      <section className="section-pad py-24 md:py-32 bg-brand-paper">
-        <div className="max-w-4xl mb-16">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted">
-              <InlineEditable contentPath="process.label" value={content.process.label} multiline={false} />
-            </span>
-          </div>
-          <h2 className="font-heading text-5xl md:text-7xl leading-tight">
-            <InlineEditable contentPath="process.title" value={content.process.title} />
-          </h2>
-        </div>
-        
-        <div className="grid md:grid-cols-12 gap-12 lg:gap-20 items-center">
-          <div className="md:col-span-7 relative group overflow-hidden">
-            <ImageEditable 
-              contentPath="process.image" 
-              value={content.process.image} 
-              alt="Structured strategy process" 
-              className="grayscale-[10%] group-hover:scale-105 transition-transform duration-700" 
-            />
-          </div>
-          <div className="md:col-span-5 flex flex-col justify-center">
-            <div className="space-y-12">
-              {content.process.steps.map((step: any, i: number) => (
-                <div key={i}>
-                  <p className="text-brand-red font-body text-[12px] uppercase tracking-[0.3em] font-bold mb-3">{step.id}</p>
-                  <h3 className="font-heading text-3xl md:text-4xl mb-3">
-                    <InlineEditable contentPath={`process.steps.${i}.title`} value={step.title} multiline={false} />
-                  </h3>
-                  <p className="font-body text-brand-muted leading-relaxed text-lg">
-                    <InlineEditable contentPath={`process.steps.${i}.desc`} value={step.desc} />
-                  </p>
-                  {i < 2 && <div className="w-full h-[1px] bg-brand-ink opacity-10 mt-12"></div>}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </section>
 
       {/* FAQ */}

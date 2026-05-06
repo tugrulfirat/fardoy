@@ -44,14 +44,6 @@ export default function Expertise() {
       
       {/* EXPERTISE HERO */}
       <section className="section-pad pt-20 md:pt-28 pb-16 md:pb-20 bg-brand-paper relative overflow-hidden">
-        <div className="hidden lg:block absolute right-[6vw] bottom-8 pointer-events-none z-0 text-right select-none">
-          <div className="font-body font-extralight text-[16vw] leading-none text-brand-ink opacity-[0.045]">
-            04
-          </div>
-          <div className="-mt-6 text-[11px] uppercase tracking-[0.45em] font-bold text-brand-red opacity-70">
-            Capabilities
-          </div>
-        </div>
         <div className="grid md:grid-cols-12 gap-10 relative z-10">
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
@@ -112,13 +104,16 @@ export default function Expertise() {
             id={service.title.toLowerCase().split(' ')[0]} 
             className={`section-pad py-24 md:py-40 ${i % 2 === 1 ? 'bg-brand-ink text-brand-paper' : 'bg-brand-paper'}`}
           >
-            <div className="max-w-6xl mx-auto">
               <span className={`section-num mb-8 block ${i % 2 === 1 ? 'text-brand-mint' : ''}`}>/ {service.id}</span>
-              <h2 className="font-heading text-5xl md:text-8xl leading-[0.9] mb-12">
-                <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
-              </h2>
               <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-                <div className="md:col-span-10">
+                <div className="md:col-span-7">
+                  <h2 className="font-heading text-5xl md:text-8xl leading-[0.9] mb-12">
+                    <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
+                  </h2>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-12 gap-10 md:gap-16">
+                <div className="md:col-span-6">
                   <p className={`font-heading text-2xl md:text-4xl leading-tight mb-16 ${i % 2 === 1 ? 'text-brand-mint text-opacity-90' : 'text-brand-muted'}`}>
                     <InlineEditable contentPath={`expertisePage.services.${i}.desc`} value={service.desc} />
                   </p>
@@ -237,7 +232,6 @@ export default function Expertise() {
                     </button>
                   )}
                 </div>
-              </div>
             </div>
           </div>
         ))}

@@ -75,15 +75,7 @@ export default function Consultation() {
       <Header />
       
       {/* INQUIRE HERO */}
-      <section className="section-pad pt-20 md:pt-28 pb-16 md:pb-20 bg-brand-paper relative overflow-hidden">
-        <div className="hidden lg:block absolute right-[6vw] bottom-8 pointer-events-none z-0 text-right select-none">
-          <div className="font-body font-extralight text-[16vw] leading-none text-brand-ink opacity-[0.045]">
-            01
-          </div>
-          <div className="-mt-6 text-[11px] uppercase tracking-[0.45em] font-bold text-brand-red opacity-70">
-            Conversation
-          </div>
-        </div>
+      <section className="section-pad pt-20 md:pt-28 pb-16 md:pb-20 bg-brand-sage relative overflow-hidden">
         <div className="grid md:grid-cols-12 gap-10 relative z-10">
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
