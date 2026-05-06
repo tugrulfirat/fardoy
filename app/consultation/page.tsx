@@ -37,6 +37,8 @@ export default function Consultation() {
   }
 
   useEffect(() => {
+    let cancelled = false
+
     // Load Google Calendar script
     const link = document.createElement('link')
     link.href = 'https://calendar.google.com/calendar/scheduling-button-script.css'
@@ -47,6 +49,7 @@ export default function Consultation() {
     script.src = 'https://calendar.google.com/calendar/scheduling-button-script.js'
     script.async = true
     script.onload = () => {
+      if (cancelled) return
       // @ts-ignore
       if (window.calendar && window.calendar.schedulingButton) {
         // @ts-ignore
@@ -61,8 +64,9 @@ export default function Consultation() {
     document.body.appendChild(script)
 
     return () => {
-      document.head.removeChild(link)
-      document.body.removeChild(script)
+      cancelled = true
+      link.parentNode?.removeChild(link)
+      script.parentNode?.removeChild(script)
     }
   }, [])
 
@@ -101,7 +105,7 @@ export default function Consultation() {
       </section>
 
       {/* FORM SECTION */}
-      <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream">
         <div className="grid md:grid-cols-12 gap-16 md:gap-24">
           
           {/* Info */}
@@ -189,7 +193,7 @@ export default function Consultation() {
       </section>
 
       {/* WHAT TO EXPECT SECTION */}
-      <section className="section-pad py-24 md:py-32 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-32 bg-brand-paper">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">

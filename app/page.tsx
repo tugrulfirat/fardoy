@@ -169,14 +169,14 @@ export default function Home() {
       {/* STRATEGIC TRIGGERS */}
       <section id="strategic-triggers" className="section-pad py-24 md:py-40 bg-brand-sage relative overflow-hidden">
         <div className="grid md:grid-cols-12 gap-16 md:gap-24 relative z-10 items-start">
-          <div className="md:col-span-5 sticky top-32">
+          <div className="md:col-span-5 md:sticky md:top-32 mb-12 md:mb-0">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-10 h-[1px] bg-brand-ink"></div>
               <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-ink">
                 <InlineEditable contentPath="triggers.label" value={content.triggers.label} multiline={false} />
               </span>
             </div>
-            <h2 className="font-heading text-5xl md:text-7xl leading-tight text-brand-ink">
+            <h2 className="font-heading text-4xl md:text-7xl leading-tight text-brand-ink">
               <InlineEditable contentPath="triggers.title" value={content.triggers.title} />
             </h2>
           </div>
@@ -199,7 +199,7 @@ export default function Home() {
 
 
       {/* WHY FARDOY / HIGHLIGHTS */}
-      <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
@@ -237,7 +237,7 @@ export default function Home() {
       </section>
 
       {/* TESTIMONIALS SECTION */}
-      <section className="section-pad py-24 md:py-40 bg-brand-cream border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-paper">
         <div className="mb-20 relative">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
@@ -305,8 +305,8 @@ export default function Home() {
 
 
       {/* LEADERSHIP */}
-      <section className="bg-brand-paper">
-        <div className="section-pad pt-24 md:pt-36 bg-brand-paper">
+      <section className="bg-brand-cream">
+        <div className="section-pad pt-24 md:pt-36 bg-brand-cream">
           <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-red mb-8 block">
             <InlineEditable contentPath="leadership.label" value={content.leadership.label} multiline={false} />
           </span>
@@ -327,7 +327,7 @@ export default function Home() {
           </div>
 
           <div className="mt-16 md:mt-24 grid md:grid-cols-12 gap-6 items-end relative z-10">
-            <div className="md:col-span-5 bg-brand-cream pt-8">
+            <div className="md:col-span-5 bg-brand-paper pt-8">
               <div className="px-8 pb-8">
                 <h3 className="font-heading text-4xl">
                   <InlineEditable contentPath="leadership.founders.0.name" value={content.leadership.founders[0].name} multiline={false} />
@@ -343,7 +343,7 @@ export default function Home() {
                 className="w-full aspect-[4/5] object-cover grayscale" 
               />
             </div>
-            <div className="md:col-span-4 bg-brand-cream pt-8 md:translate-y-14">
+            <div className="md:col-span-4 bg-brand-paper pt-8 md:translate-y-14">
               <div className="px-8 pb-8">
                 <h3 className="font-heading text-4xl">
                   <InlineEditable contentPath="leadership.founders.1.name" value={content.leadership.founders[1].name} multiline={false} />
@@ -421,7 +421,7 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
