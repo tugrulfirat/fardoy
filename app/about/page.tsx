@@ -8,6 +8,7 @@ import { ImageEditable } from '@/components/ImageEditable'
 import { useSiteContent } from '@/components/SiteContentContext'
 import { useIsAdmin } from '@/hooks/useIsAdmin'
 import { useDraft } from '@/components/DraftContext'
+import { siteContent as staticContent } from '@/data/siteContent'
 import Link from 'next/link'
 
 export default function About() {
@@ -43,6 +44,12 @@ export default function About() {
   }
 
   const page = content.aboutPage
+  const principleItems = page.principles.items.length >= staticContent.aboutPage.principles.items.length
+    ? page.principles.items
+    : staticContent.aboutPage.principles.items.map((fallbackItem, i) => ({
+        ...fallbackItem,
+        ...page.principles.items[i],
+      }))
 
   return (
     <main className="min-h-screen bg-brand-paper">
@@ -252,7 +259,7 @@ export default function About() {
               style={isMounted && isMobile ? { x } : {}} 
               className={`flex gap-6 lg:gap-8 ${isMounted && isMobile ? 'w-max' : 'w-max lg:w-full lg:justify-center'}`}
             >
-              {page.principles.items.map((item: any, i: number) => (
+              {principleItems.map((item: any, i: number) => (
                 <article key={item.id} className="principle-card w-[280px] md:w-[340px] bg-brand-ink p-8 flex flex-col shadow-2xl flex-shrink-0">
                   <div className="h-24 flex items-end gap-3 text-brand-red">
                     {i === 0 && <><span className="w-16 h-16 rounded-full border border-current"></span><span className="w-16 h-16 bg-current"></span></>}
