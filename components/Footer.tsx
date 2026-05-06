@@ -9,7 +9,7 @@ export default function Footer() {
   const footer = content.footer
 
   return (
-    <footer className="section-pad bg-brand-paper text-brand-ink py-16 border-t border-brand-ink border-opacity-10">
+    <footer className="section-pad bg-brand-paper text-brand-ink py-16">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="md:col-span-4">
           <div className="w-32 mb-8">
@@ -41,7 +41,7 @@ export default function Footer() {
           <a href="mailto:hello@fardoy.com" className="font-heading text-3xl border-b border-brand-ink border-opacity-20 pb-1 hover:text-brand-red">hello@fardoy.com</a>
         </div>
       </div>
-      <div className="mt-16 pt-8 border-t border-brand-ink border-opacity-10 flex flex-col md:flex-row justify-between gap-6 text-[12px] uppercase tracking-[0.25em] text-brand-muted">
+      <div className="mt-16 pt-8 border-t border-brand-ink/5 flex flex-col md:flex-row justify-between gap-6 text-[12px] uppercase tracking-[0.25em] text-brand-muted">
         <p>© 2025 Fardoy Strategic Consultancy</p>
         <div className="flex gap-8">
           <Link href="/privacy" className="hover:text-brand-red">Privacy</Link>

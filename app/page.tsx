@@ -435,7 +435,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="md:col-span-7 mt-12 md:mt-0">
-            <div className="border-t border-brand-ink border-opacity-10">
+            <div className="border-t border-brand-ink/5">
               {content.faq.items.map((item: any, i: number) => (
                 <FAQItem 
                   key={i} 

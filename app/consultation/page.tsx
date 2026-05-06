@@ -228,7 +228,7 @@ export default function Consultation() {
       </section>
 
       {/* FAQ SECTION */}
-      <section className="section-pad py-24 md:py-40 bg-brand-paper border-t border-brand-ink border-opacity-5">
+      <section className="section-pad py-24 md:py-40 bg-brand-cream">
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-6">
@@ -240,7 +240,7 @@ export default function Consultation() {
             </h2>
           </div>
           <div className="md:col-span-7 mt-12 md:mt-0">
-            <div className="border-t border-brand-ink border-opacity-10">
+            <div className="border-t border-brand-ink/5">
               {page.faq.items.map((item: any, i: number) => (
                 <FAQItem 
                   key={i} 
