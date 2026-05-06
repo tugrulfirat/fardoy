@@ -200,10 +200,13 @@ export default function Consultation() {
           </div>
           <div className="md:col-span-7 mt-10 md:mt-0">
             <ul className="space-y-8">
-              {page.expect.items.map((item: string, i: number) => (
-                <li key={i} className="flex items-start gap-4 border-b border-brand-ink border-opacity-5 pb-8 text-xl md:text-2xl font-heading">
+              {page.expect.items
+                .map((item: string, i: number) => ({ item, originalIndex: i }))
+                .filter(({ item }: { item: string; originalIndex: number }) => item.trim().length > 0)
+                .map(({ item, originalIndex }: { item: string; originalIndex: number }, i: number) => (
+                <li key={originalIndex} className="flex items-start gap-4 border-b border-brand-ink border-opacity-5 pb-8 text-xl md:text-2xl font-heading">
                   <span className="text-brand-red">0{i+1}</span>
-                  <InlineEditable contentPath={`consultationPage.expect.items.${i}`} value={item} />
+                  <InlineEditable contentPath={`consultationPage.expect.items.${originalIndex}`} value={item} />
                 </li>
               ))}
             </ul>
