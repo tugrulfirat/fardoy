@@ -42,6 +42,10 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
     try {
       const res = await fetch(`/api/admin/upload?filename=${file.name}`, { method: 'POST', body: file })
       const blob = await res.json()
+      if (!res.ok || blob.error) {
+        alert(`Upload failed: ${blob.error || 'Unknown error'}. Have you configured Vercel Blob in your .env.local?`)
+        return
+      }
       if (blob.url) {
         setImages([blob, ...images])
         if (onSelect) onSelect(blob.url)

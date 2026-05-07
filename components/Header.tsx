@@ -69,7 +69,7 @@ export default function Header() {
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block py-3 text-[13px] uppercase tracking-[0.24em] font-bold text-brand-ink transition-colors hover:text-brand-red">
               About
             </Link>
-            <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className="mt-4 flex h-12 w-full items-center justify-center border border-brand-red/45 text-[12px] uppercase tracking-[0.24em] font-bold text-brand-red transition-colors hover:bg-brand-red hover:text-white">
+            <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className="mt-4 flex h-12 w-full items-center justify-center bg-brand-red text-[12px] uppercase tracking-[0.24em] font-bold text-white transition-colors hover:bg-brand-ink">
               Enquire
             </Link>
         </div>
