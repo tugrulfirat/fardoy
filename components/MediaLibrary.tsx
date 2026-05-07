@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { Upload, X, Trash2, Check, Search, Filter, Image as ImageIcon } from 'lucide-react'
 
 type Props = {
@@ -74,7 +75,9 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
 
   if (!isOpen) return null
 
-  return (
+  if (typeof document === 'undefined') return null
+
+  return createPortal(
     <div className="fixed inset-0 bg-black/95 z-[500] flex items-center justify-center p-4 md:p-12 backdrop-blur-xl animate-in fade-in duration-300">
       <div className="bg-brand-paper w-full max-w-7xl h-full max-h-[90vh] overflow-hidden flex flex-col shadow-2xl border border-brand-ink/10">
         
@@ -231,6 +234,7 @@ export function MediaLibrary({ isOpen, onClose, onSelect, currentUrl }: Props) {
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

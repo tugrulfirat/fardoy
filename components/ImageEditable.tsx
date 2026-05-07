@@ -93,17 +93,18 @@ export function ImageEditable({ contentPath, value: initialValue, alt, className
       />
       
       {/* Admin Overlay */}
-      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-4 z-10">
-        <button
-          onClick={() => {
-            setShowManager(true)
-            fetchImages()
-          }}
-          className="bg-brand-red text-white px-4 py-2 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-brand-ink transition-colors"
-        >
+      <div 
+        onClick={(e) => {
+          e.preventDefault();
+          setShowManager(true);
+          fetchImages();
+        }}
+        className="absolute inset-0 bg-black/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center z-10 cursor-pointer rounded-inherit"
+        title="Change Image"
+      >
+        <div className="bg-brand-red text-white w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:bg-brand-ink transition-colors">
           <ImageIcon size={16} />
-          Change Image
-        </button>
+        </div>
       </div>
 
       {/* Dirty Indicator */}

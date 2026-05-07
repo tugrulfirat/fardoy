@@ -236,6 +236,67 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TESTIMONIALS SECTION */}
+      <section className="section-pad py-24 md:py-40 bg-brand-paper">
+        <div className="mb-20 relative">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
+            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+              <InlineEditable contentPath="testimonials.label" value={content.testimonials.label} multiline={false} />
+            </span>
+          </div>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+            <div>
+              <h2 className="font-heading text-5xl md:text-7xl leading-tight">
+                <InlineEditable contentPath="testimonials.title" value={content.testimonials.title} />
+              </h2>
+              <p className="font-body text-brand-muted mt-4 text-lg">
+                <InlineEditable contentPath="testimonials.subtitle" value={content.testimonials.subtitle} />
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {content.testimonials.items.map((t: any, i: number) => (
+            <div 
+              key={i} 
+              className="flex flex-col bg-brand-sage p-8 md:p-10 rounded-2xl border border-brand-ink/5 shadow-sm group transition-all duration-500 hover:shadow-md"
+            >
+              <blockquote className="font-heading text-2xl md:text-3xl leading-snug mb-10 text-brand-ink italic relative z-10 group-hover:text-brand-red transition-colors duration-500">
+                <InlineEditable contentPath={`testimonials.items.${i}.quote`} value={t.quote} />
+              </blockquote>
+              
+              <div className="mt-auto relative z-10">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-16 h-16 rounded-full bg-white/40 flex items-center justify-center flex-shrink-0 border border-brand-ink/5">
+                    <ImageEditable 
+                      contentPath={`testimonials.items.${i}.logo`} 
+                      value={t.logo} 
+                      className="w-full h-full rounded-full overflow-hidden max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-heading text-xl leading-none mb-1">
+                      <InlineEditable contentPath={`testimonials.items.${i}.company`} value={t.company} multiline={false} />
+                    </p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-red">
+                      <InlineEditable contentPath={`testimonials.items.${i}.author`} value={t.author} multiline={false} />
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="inline-block bg-brand-paper/50 px-4 py-1.5 rounded-full border border-brand-ink/10">
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-brand-muted opacity-80">
+                    <InlineEditable contentPath={`testimonials.items.${i}.context`} value={t.context} />
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
 
       {/* HOW WE WORK */}
       <section className="section-pad py-24 md:py-32 bg-brand-sage">
