@@ -63,7 +63,7 @@ export default function Home() {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </Link>
               <button 
-                onClick={() => document.getElementById('strategic-triggers')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => document.getElementById('what-we-do')?.scrollIntoView({ behavior: 'smooth' })}
                 className="hidden md:flex flex-col w-24 h-24 rounded-full bg-brand-red text-brand-paper items-center justify-center text-[10px] uppercase tracking-[0.2em] font-bold text-center leading-tight cursor-pointer hover:scale-110 transition-transform animate-float group"
               >
                 SCROLL
@@ -109,7 +109,7 @@ export default function Home() {
       </section>
 
       {/* WHAT WE DO — SERVICES PREVIEW */}
-      <section className="section-pad pt-16 md:pt-24 pb-20 md:pb-28 bg-brand-ink text-brand-paper">
+      <section id="what-we-do" className="section-pad pt-16 md:pt-24 pb-20 md:pb-28 bg-brand-ink text-brand-paper">
         {/* Section header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 md:mb-16">
           <div>
@@ -236,75 +236,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TESTIMONIALS SECTION */}
-      <section className="section-pad py-24 md:py-40 bg-brand-paper">
-        <div className="mb-20 relative">
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-            <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
-              <InlineEditable contentPath="testimonials.label" value={content.testimonials.label} multiline={false} />
-            </span>
-          </div>
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
-            <div>
-              <h2 className="font-heading text-5xl md:text-7xl leading-tight">
-                <InlineEditable contentPath="testimonials.title" value={content.testimonials.title} />
-              </h2>
-              <p className="font-body text-brand-muted mt-4 text-lg">
-                <InlineEditable contentPath="testimonials.subtitle" value={content.testimonials.subtitle} />
-              </p>
-            </div>
-            {/* Reduced sleek quote icon for the section */}
-            <div className="text-brand-red opacity-10 hidden md:block">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H16.017C15.4647 8 15.017 8.44772 15.017 9V12C15.017 12.5523 14.5693 13 14.017 13H12.017V9C12.017 6.23858 14.2556 4 17.017 4H20.017V2H17.017C13.151 2 10.017 5.13401 10.017 9V15C10.017 18.3137 12.7033 21 16.017 21H14.017ZM4.017 21L4.017 18C4.017 16.8954 4.91243 16 6.017 16H9.017C9.56928 16 10.017 15.5523 10.017 15V9C10.017 8.44772 9.56928 8 9.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56928 13 4.017 13H2.017V9C2.017 6.23858 4.25558 4 7.017 4H10.017V2H7.017C3.15097 2 0.017 5.13401 0.017 9V15C0.017 18.3137 2.7033 21 6.017 21H4.017Z" />
-              </svg>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {content.testimonials.items.map((t: any, i: number) => (
-            <div 
-              key={i} 
-              className="flex flex-col bg-brand-sage p-8 md:p-10 rounded-2xl border border-brand-ink/5 shadow-sm group transition-all duration-500 hover:shadow-md"
-            >
-              <blockquote className="font-heading text-2xl md:text-3xl leading-snug mb-10 text-brand-ink italic relative z-10 group-hover:text-brand-red transition-colors duration-500">
-                <InlineEditable contentPath={`testimonials.items.${i}.quote`} value={t.quote} />
-              </blockquote>
-              
-              <div className="mt-auto relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-full bg-white/40 p-1.5 flex items-center justify-center flex-shrink-0 overflow-hidden border border-brand-ink/5">
-                    <ImageEditable 
-                      contentPath={`testimonials.items.${i}.logo`} 
-                      value={t.logo} 
-                      className="max-w-full max-h-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                    />
-                  </div>
-                  <div>
-                    <p className="font-heading text-xl leading-none mb-1">
-                      <InlineEditable contentPath={`testimonials.items.${i}.company`} value={t.company} multiline={false} />
-                    </p>
-                    <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-brand-red">
-                      <InlineEditable contentPath={`testimonials.items.${i}.author`} value={t.author} multiline={false} />
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="inline-block bg-brand-paper/50 px-4 py-1.5 rounded-full border border-brand-ink/10">
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-brand-muted opacity-80">
-                    <InlineEditable contentPath={`testimonials.items.${i}.context`} value={t.context} />
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* HOW WE WORK */}
-      <section className="section-pad py-24 md:py-32 bg-brand-paper">
+      <section className="section-pad py-24 md:py-32 bg-brand-sage">
         <div className="max-w-4xl mb-16">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
@@ -452,7 +386,9 @@ export default function Home() {
       <section className="section-pad py-24 md:py-32 bg-brand-ink text-brand-paper">
         <div className="grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-8">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">NEXT STEP</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">
+              <InlineEditable contentPath="cta.label" value={content.cta.label} multiline={false} />
+            </span>
             <h2 className="font-heading text-5xl md:text-7xl leading-none mb-8">
               <InlineEditable contentPath="cta.headline" value={content.cta.headline} />
             </h2>

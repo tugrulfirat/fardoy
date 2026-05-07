@@ -15,14 +15,6 @@ export default function Contact() {
       
       {/* CONTACT HERO */}
       <section className="section-pad pt-20 md:pt-32 pb-48 md:pb-64 bg-brand-paper relative overflow-hidden">
-        <div className="hidden lg:block absolute right-[6vw] top-40 pointer-events-none z-0 text-right select-none">
-          <div className="font-heading text-[18vw] leading-none text-brand-ink opacity-[0.045]">
-            03
-          </div>
-          <div className="-mt-6 text-[11px] uppercase tracking-[0.45em] font-bold text-brand-red opacity-70">
-            Routes
-          </div>
-        </div>
         <div className="grid md:grid-cols-12 gap-10 relative z-10">
           <div className="md:col-span-10">
             <div className="flex items-center gap-2 mb-8">
@@ -37,7 +29,9 @@ export default function Contact() {
             
             <div className="grid md:grid-cols-12 gap-16 md:gap-32 items-end">
               <div className="md:col-span-7">
-                <p className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted mb-6">General Enquiries</p>
+                <p className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted mb-6">
+                  <InlineEditable contentPath="contactPage.hero.enquiryLabel" value={page.hero.enquiryLabel} multiline={false} />
+                </p>
                 <a href={`mailto:${page.enquiries.email}`} className="font-heading text-4xl md:text-7xl border-b border-brand-ink border-opacity-10 pb-4 hover:text-brand-red transition-all block">
                   <InlineEditable contentPath="contactPage.enquiries.email" value={page.enquiries.email} multiline={false} />
                 </a>
@@ -64,10 +58,10 @@ export default function Contact() {
                 <p className="text-[12px] uppercase tracking-[0.25em] font-bold text-brand-muted mb-6">
                   <InlineEditable contentPath="contactPage.additional.engagements.title" value={page.additional.engagements.title} multiline={false} />
                 </p>
-                <p className="text-xl leading-relaxed text-brand-ink font-heading mb-6 max-w-sm">
+                <p className="font-body text-lg leading-relaxed text-brand-muted mb-6 max-w-sm">
                   <InlineEditable contentPath="contactPage.additional.engagements.desc1" value={page.additional.engagements.desc1} />
                 </p>
-                <p className="text-lg leading-relaxed text-brand-muted max-w-sm">
+                <p className="font-body text-lg leading-relaxed text-brand-muted max-w-sm">
                   <InlineEditable contentPath="contactPage.additional.engagements.desc2" value={page.additional.engagements.desc2} />
                 </p>
               </div>
@@ -75,10 +69,10 @@ export default function Contact() {
                 <p className="text-[12px] uppercase tracking-[0.25em] font-bold text-brand-muted mb-6">
                   <InlineEditable contentPath="contactPage.additional.partnerships.title" value={page.additional.partnerships.title} multiline={false} />
                 </p>
-                <p className="text-lg leading-relaxed text-brand-muted mb-6 max-w-sm">
+                <p className="font-body text-lg leading-relaxed text-brand-muted max-w-sm">
                   <InlineEditable contentPath="contactPage.additional.partnerships.desc1" value={page.additional.partnerships.desc1} />
                 </p>
-                <p className="text-lg leading-relaxed text-brand-muted max-w-sm">
+                <p className="font-body text-lg leading-relaxed text-brand-muted max-w-sm">
                   <InlineEditable contentPath="contactPage.additional.partnerships.desc2" value={page.additional.partnerships.desc2} />
                 </p>
               </div>

@@ -158,6 +158,7 @@ export const siteContent = {
     ]
   },
   cta: {
+    label: "NEXT STEP",
     headline: "Have a decision to make?",
     subline: "Focused consultation to understand your position, constraints, and next steps.",
     image: "/assets/team-meeting.png",
@@ -171,10 +172,12 @@ export const siteContent = {
   // --- EXPERTISE PAGE ---
   expertisePage: {
     hero: {
+      label: "Capabilities",
       title: "Strategic Expertise.",
       subheadline: "For businesses facing complexity, transition, or growth, we bring structure to the decisions that shape what comes next."
     },
     overview: {
+      label: "What we do",
       headline: "Four ways we help businesses move from uncertainty to structured growth.",
       items: ["Startup Foundations", "Performance & Profitability", "Growth Strategy", "Digital Systems"],
       labels: {
@@ -218,6 +221,7 @@ export const siteContent = {
       }
     ],
     closing: {
+      label: "NEXT STEP",
       headline: "Engagements are shaped around the decision in front of you.",
       subheadline: "We do not sell fixed packages. Each engagement is shaped around your stage, constraints, urgency, and internal capability.",
       cta: "Start the conversation",
@@ -287,6 +291,7 @@ export const siteContent = {
       label: "The Fardoy Principle",
       quote: "Be Different, Be Bold.",
       subquote: "Not as a slogan — as a way to make clearer decisions when the obvious path is not enough.",
+      stepLabel: "The next step",
       cta: "If you’re at a point where decisions matter more than discussion, the next step is a conversation.",
       buttonText: "Book a Free Consultation"
     }
@@ -336,6 +341,7 @@ export const siteContent = {
   contactPage: {
     hero: {
       label: "Contact Us",
+      enquiryLabel: "General Enquiries",
       title: "Get in Touch."
     },
     enquiries: {

@@ -28,6 +28,10 @@ body {
   font-family: var(--font-heading);
 }
 
+.font-body {
+  font-family: var(--font-body);
+}
+
 .section-pad {
   padding-left: clamp(1.5rem, 6vw, 7rem);
   padding-right: clamp(1.5rem, 6vw, 7rem);

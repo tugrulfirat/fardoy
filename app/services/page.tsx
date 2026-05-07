@@ -48,7 +48,9 @@ export default function Expertise() {
           <div className="md:col-span-8">
             <div className="flex items-center gap-2 mb-8">
               <div className="w-8 h-[1px] bg-brand-ink opacity-20"></div>
-              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">Capabilities</span>
+              <span className="text-[12px] uppercase tracking-[0.3em] font-bold text-brand-muted uppercase">
+                <InlineEditable contentPath="expertisePage.hero.label" value={page.hero.label} multiline={false} />
+              </span>
             </div>
             <h1 className="font-heading text-[12vw] md:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tight">
               <InlineEditable contentPath="expertisePage.hero.title" value={page.hero.title} />
@@ -69,7 +71,9 @@ export default function Expertise() {
       <section className="section-pad py-20 md:py-32 bg-brand-ink text-brand-paper">
         <div className="grid md:grid-cols-12 gap-10 items-start mb-16 md:mb-24">
           <div className="md:col-span-6">
-            <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-brand-mint opacity-70 block mb-6">What we do</span>
+            <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-brand-mint opacity-70 block mb-6">
+              <InlineEditable contentPath="expertisePage.overview.label" value={page.overview.label} multiline={false} />
+            </span>
             <p className="font-heading text-3xl md:text-4xl lg:text-5xl leading-tight text-brand-paper">
               <InlineEditable contentPath="expertisePage.overview.headline" value={page.overview.headline} />
             </p>
@@ -98,150 +102,162 @@ export default function Expertise() {
 
       {/* CAPABILITIES LIST */}
       <section>
-        {page.services.map((service: any, i: number) => (
-          <div 
-            key={i} 
-            id={service.title.toLowerCase().split(' ')[0]} 
-            className={`section-pad py-24 md:py-40 ${i % 2 === 1 ? 'bg-brand-ink text-brand-paper' : 'bg-brand-paper'}`}
-          >
-              <span className={`section-num mb-8 block ${i % 2 === 1 ? 'text-brand-mint' : ''}`}>/ {service.id}</span>
-              <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-                <div className="md:col-span-7">
-                  <h2 className="font-heading text-5xl md:text-8xl leading-[0.9] mb-12">
-                    <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
-                  </h2>
+        {page.services.map((service: any, i: number) => {
+          const isDeepGreen = i === 1;
+          const isCream = i === 3;
+          const isLight = i === 0 || i === 2 || isCream;
+
+          return (
+            <div 
+              key={i} 
+              id={service.title.toLowerCase().split(' ')[0]} 
+              className={`section-pad py-24 md:py-40 ${
+                isDeepGreen ? 'bg-[#2b3832] text-brand-paper' : 
+                isCream ? 'bg-brand-cream text-brand-ink' : 
+                'bg-brand-paper text-brand-ink'
+              }`}
+            >
+                <span className={`section-num mb-8 block ${isDeepGreen ? 'text-brand-mint' : ''}`}>/ {service.id}</span>
+                <div className="grid md:grid-cols-12 gap-10 md:gap-16">
+                  <div className="md:col-span-7">
+                    <h2 className="font-heading text-5xl md:text-8xl leading-[0.9] mb-12">
+                      <InlineEditable contentPath={`expertisePage.services.${i}.title`} value={service.title} />
+                    </h2>
+                  </div>
                 </div>
+                <div className="grid md:grid-cols-12 gap-10 md:gap-16">
+                  <div className="md:col-span-6">
+                    <p className={`font-heading text-2xl md:text-4xl leading-tight mb-16 ${isDeepGreen ? 'text-brand-mint text-opacity-90' : 'text-brand-muted'}`}>
+                      <InlineEditable contentPath={`expertisePage.services.${i}.desc`} value={service.desc} />
+                    </p>
+                  </div>
+                </div>
+                
+                <div className={`grid md:grid-cols-3 gap-12 border-t pt-16 ${isDeepGreen ? 'border-brand-paper border-opacity-10' : 'border-brand-ink border-opacity-10'}`}>
+                  <div>
+                    <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${isDeepGreen ? 'text-brand-mint' : 'text-brand-red'}`}>
+                      <InlineEditable contentPath="expertisePage.overview.labels.situations" value={page.overview.labels.situations} multiline={false} />
+                    </p>
+                    <ul className={`space-y-4 text-sm leading-relaxed ${isDeepGreen ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
+                      {service.situations.map((sit: string, j: number) => (
+                        <li key={j} className="flex gap-3 relative group/item">
+                          <span className="text-brand-red shrink-0">—</span>
+                          <InlineEditable contentPath={`expertisePage.services.${i}.situations.${j}`} value={sit} />
+                          {isAdmin && (
+                            <button 
+                              onClick={() => {
+                                if (confirm('Remove this item?')) {
+                                  const newList = service.situations.filter((_: any, idx: number) => idx !== j)
+                                  updateDraft(`expertisePage.services.${i}.situations`, newList)
+                                }
+                              }}
+                              className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                            >
+                              ×
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    {isAdmin && (
+                      <button 
+                        onClick={() => {
+                          const newList = [...service.situations, "New situation item..."]
+                          updateDraft(`expertisePage.services.${i}.situations`, newList)
+                        }}
+                        className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                      >
+                        + Add Item
+                      </button>
+                    )}
+                  </div>
+                  <div>
+                    <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${isDeepGreen ? 'text-brand-mint' : 'text-brand-red'}`}>
+                      <InlineEditable contentPath="expertisePage.overview.labels.focus" value={page.overview.labels.focus} multiline={false} />
+                    </p>
+                    <ul className={`space-y-4 text-sm leading-relaxed font-bold ${isDeepGreen ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
+                      {service.focus.map((f: string, j: number) => (
+                        <li key={j} className="flex gap-3 relative group/item">
+                          <span className="text-brand-red shrink-0">0{j+1}</span>
+                          <InlineEditable contentPath={`expertisePage.services.${i}.focus.${j}`} value={f} />
+                          {isAdmin && (
+                            <button 
+                              onClick={() => {
+                                if (confirm('Remove this item?')) {
+                                  const newList = service.focus.filter((_: any, idx: number) => idx !== j)
+                                  updateDraft(`expertisePage.services.${i}.focus`, newList)
+                                }
+                              }}
+                              className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                            >
+                              ×
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    {isAdmin && (
+                      <button 
+                        onClick={() => {
+                          const newList = [...service.focus, "New focus item..."]
+                          updateDraft(`expertisePage.services.${i}.focus`, newList)
+                        }}
+                        className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                      >
+                        + Add Item
+                      </button>
+                    )}
+                  </div>
+                  <div>
+                    <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${isDeepGreen ? 'text-brand-mint' : 'text-brand-red'}`}>
+                      <InlineEditable contentPath="expertisePage.overview.labels.outcomes" value={page.overview.labels.outcomes} multiline={false} />
+                    </p>
+                    <ul className={`space-y-4 text-sm leading-relaxed ${isDeepGreen ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
+                      {service.outcomes.map((out: string, j: number) => (
+                        <li key={j} className="flex gap-3 relative group/item">
+                          <span className="text-brand-red shrink-0">●</span>
+                          <InlineEditable contentPath={`expertisePage.services.${i}.outcomes.${j}`} value={out} />
+                          {isAdmin && (
+                            <button 
+                              onClick={() => {
+                                if (confirm('Remove this item?')) {
+                                  const newList = service.outcomes.filter((_: any, idx: number) => idx !== j)
+                                  updateDraft(`expertisePage.services.${i}.outcomes`, newList)
+                                }
+                              }}
+                              className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
+                            >
+                              ×
+                            </button>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                    {isAdmin && (
+                      <button 
+                        onClick={() => {
+                          const newList = [...service.outcomes, "New outcome item..."]
+                          updateDraft(`expertisePage.services.${i}.outcomes`, newList)
+                        }}
+                        className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
+                      >
+                        + Add Item
+                      </button>
+                    )}
+                  </div>
               </div>
-              <div className="grid md:grid-cols-12 gap-10 md:gap-16">
-                <div className="md:col-span-6">
-                  <p className={`font-heading text-2xl md:text-4xl leading-tight mb-16 ${i % 2 === 1 ? 'text-brand-mint text-opacity-90' : 'text-brand-muted'}`}>
-                    <InlineEditable contentPath={`expertisePage.services.${i}.desc`} value={service.desc} />
-                  </p>
-                </div>
-              </div>
-              
-              <div className={`grid md:grid-cols-3 gap-12 border-t pt-16 ${i % 2 === 1 ? 'border-brand-paper border-opacity-10' : 'border-brand-ink border-opacity-10'}`}>
-                <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
-                    <InlineEditable contentPath="expertisePage.overview.labels.situations" value={page.overview.labels.situations} multiline={false} />
-                  </p>
-                  <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
-                    {service.situations.map((sit: string, j: number) => (
-                      <li key={j} className="flex gap-3 relative group/item">
-                        <span className="text-brand-red shrink-0">—</span>
-                        <InlineEditable contentPath={`expertisePage.services.${i}.situations.${j}`} value={sit} />
-                        {isAdmin && (
-                          <button 
-                            onClick={() => {
-                              if (confirm('Remove this item?')) {
-                                const newList = service.situations.filter((_: any, idx: number) => idx !== j)
-                                updateDraft(`expertisePage.services.${i}.situations`, newList)
-                              }
-                            }}
-                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
-                          >
-                            ×
-                          </button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  {isAdmin && (
-                    <button 
-                      onClick={() => {
-                        const newList = [...service.situations, "New situation item..."]
-                        updateDraft(`expertisePage.services.${i}.situations`, newList)
-                      }}
-                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
-                    >
-                      + Add Item
-                    </button>
-                  )}
-                </div>
-                <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
-                    <InlineEditable contentPath="expertisePage.overview.labels.focus" value={page.overview.labels.focus} multiline={false} />
-                  </p>
-                  <ul className={`space-y-4 text-sm leading-relaxed font-bold ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
-                    {service.focus.map((f: string, j: number) => (
-                      <li key={j} className="flex gap-3 relative group/item">
-                        <span className="text-brand-red shrink-0">0{j+1}</span>
-                        <InlineEditable contentPath={`expertisePage.services.${i}.focus.${j}`} value={f} />
-                        {isAdmin && (
-                          <button 
-                            onClick={() => {
-                              if (confirm('Remove this item?')) {
-                                const newList = service.focus.filter((_: any, idx: number) => idx !== j)
-                                updateDraft(`expertisePage.services.${i}.focus`, newList)
-                              }
-                            }}
-                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
-                          >
-                            ×
-                          </button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  {isAdmin && (
-                    <button 
-                      onClick={() => {
-                        const newList = [...service.focus, "New focus item..."]
-                        updateDraft(`expertisePage.services.${i}.focus`, newList)
-                      }}
-                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
-                    >
-                      + Add Item
-                    </button>
-                  )}
-                </div>
-                <div>
-                  <p className={`text-[12px] uppercase tracking-[0.3em] font-bold mb-6 ${i % 2 === 1 ? 'text-brand-mint' : 'text-brand-red'}`}>
-                    <InlineEditable contentPath="expertisePage.overview.labels.outcomes" value={page.overview.labels.outcomes} multiline={false} />
-                  </p>
-                  <ul className={`space-y-4 text-sm leading-relaxed ${i % 2 === 1 ? 'text-brand-paper text-opacity-70' : 'text-brand-muted'}`}>
-                    {service.outcomes.map((out: string, j: number) => (
-                      <li key={j} className="flex gap-3 relative group/item">
-                        <span className="text-brand-red shrink-0">●</span>
-                        <InlineEditable contentPath={`expertisePage.services.${i}.outcomes.${j}`} value={out} />
-                        {isAdmin && (
-                          <button 
-                            onClick={() => {
-                              if (confirm('Remove this item?')) {
-                                const newList = service.outcomes.filter((_: any, idx: number) => idx !== j)
-                                updateDraft(`expertisePage.services.${i}.outcomes`, newList)
-                              }
-                            }}
-                            className="absolute -right-6 top-0 opacity-0 group-hover/item:opacity-100 transition-opacity text-brand-red text-xs p-1"
-                          >
-                            ×
-                          </button>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                  {isAdmin && (
-                    <button 
-                      onClick={() => {
-                        const newList = [...service.outcomes, "New outcome item..."]
-                        updateDraft(`expertisePage.services.${i}.outcomes`, newList)
-                      }}
-                      className="mt-6 text-[10px] uppercase tracking-widest font-bold opacity-40 hover:opacity-100 transition-opacity"
-                    >
-                      + Add Item
-                    </button>
-                  )}
-                </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </section>
 
       {/* CLOSING SECTION */}
       <section className="section-pad py-24 md:py-32 bg-brand-ink text-brand-paper">
         <div className="grid md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-8">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">NEXT STEP</span>
+            <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-mint mb-8 block">
+              <InlineEditable contentPath="expertisePage.closing.label" value={page.closing.label} multiline={false} />
+            </span>
             <h2 className="font-heading text-5xl md:text-7xl leading-none mb-8">
               <InlineEditable contentPath="expertisePage.closing.headline" value={page.closing.headline} />
             </h2>
