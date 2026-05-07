@@ -42,7 +42,7 @@ export default function Header() {
           <Link href="/about" className={`text-[12px] uppercase tracking-[0.3em] font-bold transition-colors duration-500 ${textColor}`}>
             About
           </Link>
-          <Link href="/consultation" className={`text-[12px] uppercase tracking-[0.3em] font-bold px-6 py-3 transition-[background-color,color] duration-500 ${ctaColor}`}>
+          <Link href="https://calendar.app.google/9p9PpaEySkyeZNGi8" target="_blank" rel="noopener noreferrer" className={`text-[12px] uppercase tracking-[0.3em] font-bold px-6 py-3 transition-[background-color,color] duration-500 ${ctaColor}`}>
             Enquire
           </Link>
         </nav>
@@ -69,7 +69,7 @@ export default function Header() {
             <Link href="/about" onClick={() => setIsMenuOpen(false)} className="block py-3 text-[13px] uppercase tracking-[0.24em] font-bold text-brand-ink transition-colors hover:text-brand-red">
               About
             </Link>
-            <Link href="/consultation" onClick={() => setIsMenuOpen(false)} className="mt-4 flex h-12 w-full items-center justify-center bg-brand-red text-[12px] uppercase tracking-[0.24em] font-bold text-white transition-colors hover:bg-brand-ink">
+            <Link href="https://calendar.app.google/9p9PpaEySkyeZNGi8" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="mt-4 flex h-12 w-full items-center justify-center bg-brand-red text-[12px] uppercase tracking-[0.24em] font-bold text-white transition-colors hover:bg-brand-ink">
               Enquire
             </Link>
         </div>

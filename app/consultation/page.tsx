@@ -54,7 +54,7 @@ export default function Consultation() {
       if (window.calendar && window.calendar.schedulingButton) {
         // @ts-ignore
         window.calendar.schedulingButton.load({
-          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2grDMTz3nliLjgnV8Vh7YtFf-xVdFSK7XTgoO2hURRQbPT7ZoDoMqZyeLFT-P2Jy001frUD1j7?gv=true',
+          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Ps4ykJzymWpVfC-PB3iMIfkYdmuNk4EXvI6fTPoxhaiRQvVZSBezDfkU-7BucMxLu6uvDxHj1?gv=true',
           color: '#ef4d38',
           label: 'Book an appointment',
           target: document.getElementById('calendar-button-target'),
