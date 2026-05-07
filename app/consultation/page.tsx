@@ -6,6 +6,9 @@ import { FAQItem } from '@/components/FAQItem'
 import { useSiteContent } from '@/components/SiteContentContext'
 import { useEffect, useState } from 'react'
 
+const CALENDAR_SHORT_URL = 'https://calendar.app.google/9p9PpaEySkyeZNGi8'
+const CALENDAR_SCHEDULE_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Ps4ykJzymWpVfC-PB3iMIfkYdmuNk4EXvI6fTPoxhaiRQvVZSBezDfkU-7BucMxLu6uvDxHj1?gv=true'
+
 export default function Consultation() {
   const content = useSiteContent()
   const page = content.consultationPage
@@ -38,6 +41,8 @@ export default function Consultation() {
 
   useEffect(() => {
     let cancelled = false
+    const useEmbeddedCalendar = window.matchMedia('(min-width: 768px)').matches
+    if (!useEmbeddedCalendar) return
 
     // Load Google Calendar script
     const link = document.createElement('link')
@@ -54,7 +59,7 @@ export default function Consultation() {
       if (window.calendar && window.calendar.schedulingButton) {
         // @ts-ignore
         window.calendar.schedulingButton.load({
-          url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Ps4ykJzymWpVfC-PB3iMIfkYdmuNk4EXvI6fTPoxhaiRQvVZSBezDfkU-7BucMxLu6uvDxHj1?gv=true',
+          url: CALENDAR_SCHEDULE_URL,
           color: '#ef4d38',
           label: 'Book an appointment',
           target: document.getElementById('calendar-button-target'),
@@ -119,7 +124,15 @@ export default function Consultation() {
                 <h3 className="font-heading text-3xl mb-8 italic">
                   <InlineEditable contentPath="consultationPage.form.calendarTitle" value={page.form.calendarTitle} multiline={false} />
                 </h3>
-                <div id="calendar-button-target"></div>
+                <a
+                  href={CALENDAR_SHORT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-14 w-full items-center justify-center bg-brand-red px-6 text-[12px] uppercase tracking-[0.24em] font-bold text-white transition-colors hover:bg-brand-ink md:hidden"
+                >
+                  Book an appointment
+                </a>
+                <div id="calendar-button-target" className="hidden md:block"></div>
               </div>
 
               <div className="w-full h-[1px] bg-brand-ink opacity-10 my-16"></div>
