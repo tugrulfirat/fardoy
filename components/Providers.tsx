@@ -3,10 +3,19 @@ import { SiteContentProvider } from './SiteContentContext'
 import { DraftProvider } from './DraftContext'
 import AdminToolbar from './AdminToolbar'
 import { AdminHeader } from './AdminHeader'
+import { siteContent as staticContent } from '@/data/siteContent'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+type SiteContent = typeof staticContent
+
+export function Providers({
+  children,
+  initialContent,
+}: {
+  children: React.ReactNode
+  initialContent: SiteContent
+}) {
   return (
-    <SiteContentProvider>
+    <SiteContentProvider initialContent={initialContent}>
       <DraftProvider>
         <AdminHeader />
         {children}

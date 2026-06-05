@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import { connection } from "next/server";
 import "./globals.css";
 import { Providers } from "@/components/Providers";
+import { getSiteContent } from "@/lib/siteContent";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-heading",
@@ -21,15 +23,18 @@ export const metadata: Metadata = {
   description: "Strategy consultancy for startups, SMEs, and scaling businesses.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await connection();
+  const initialContent = await getSiteContent();
+
   return (
     <html lang="en" className="h-full antialiased">
       <body className={`${cormorant.variable} ${sourceSans.variable} min-h-full font-body`}>
-        <Providers>
+        <Providers initialContent={initialContent}>
           {children}
         </Providers>
       </body>
